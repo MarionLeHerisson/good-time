@@ -1,4 +1,18 @@
-/* H O M E P A G E */
+/* Main */
+p {
+    font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.rainbow {
+    font-family: RainbowBridge;
+    font-size: 8rem;
+}
+
+/* Homepage */
 body {
     background-image: url("/media/mnm-all-552510-unsplash.jpg");
     background-size: cover;
@@ -6,4 +20,10 @@ body {
 
 .cover-heading, .lead, .inner{
     color: white;
+}
+
+@font-face {
+    font-family: RainbowBridge;
+    src: local("RainbowBridge"),
+    url('/fonts/RainbowBridge.ttf');
 }
