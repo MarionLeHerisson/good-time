@@ -4,24 +4,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Good Time - Vive Nils 1er{% endblock %}</title>
+        <meta name="description" content="Roi légitime des sept couronnes, roi des Andals et des Premiers Hommes,
+        protecteur du royaume, mère des dragons et khaleesi.">
         {%- block stylesheets -%}
             {# Bootstrap's stuff #}
-            <link rel="stylesheet"
-                  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
-                  integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
-                  crossorigin="anonymous">
+            <link rel="stylesheet" href="/css/bootstrap.css">
+            <link rel="stylesheet" href="/css/bootstrap-theme.css">
             {# Google fonts #}
             <link rel="stylesheet"
                   href="https://fonts.googleapis.com/css?family=Raleway">
             <link rel="stylesheet"
                   href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:li">
             {# Custom #}
-            <link rel="stylesheet"
-                  href="/css/styles.css">
+            <link rel="stylesheet" href="/css/styles.css">
         {%- endblock -%}
     </head>
     <body {% block bodyClass %}{% endblock %}>
+        {% block nav %}{% endblock %}
         {% block body %}{% endblock %}
+        {% block footer %}{% endblock %}
         {% block javascripts %}
             {# Bootstrap's stuff #}
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
