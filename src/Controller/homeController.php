@@ -19,7 +19,7 @@ class homeController extends AbstractController
      */
     public function homepageAction()
     {
-        return $this->render('jumbotron.html.twig', [
+        return $this->render('homepage.html.twig', [
 
         ]);
     }
