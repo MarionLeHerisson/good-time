@@ -12,6 +12,43 @@ h1 {
     font-size: 8rem;
 }
 
+.pt-50 {
+    padding-top: 50px;
+}
+
+/* Nav */
+.btn-outline-success {
+    color: #eac67a;
+    border-color: #eac67a;
+}
+
+.btn-outline-success.focus,
+.btn-outline-success:focus {
+    box-shadow: 0 0 0 .2rem #eac67a;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #eac67a;
+    border-color: #eac67a;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active, .btn-outline-success:not(:disabled):not(.disabled).active,
+.show > .btn-outline-success.dropdown-toggle {
+    color: #fff;
+    background-color: #eac67a;
+    border-color: #eac67a;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active:focus, .btn-outline-success:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-success.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(234, 198, 122, 0.5);
+}
+
+.bg-dark-custom {
+    background-color: #233237;
+}
+
 /* Homepage */
 body {
     background-image: url("/media/mnm-all-552510-unsplash.jpg");
