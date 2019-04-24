@@ -230,6 +230,7 @@ CREATE TABLE rating (
   bar_id INT NOT NULL,
   user_id INT NOT NULL,
   mark INT NOT NULL,
+  `comment`  TEXT DEFAULT NULL,
 
   created_at TIMESTAMP DEFAULT NOW(),
 
