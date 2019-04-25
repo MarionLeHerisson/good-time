@@ -71,7 +71,7 @@ CREATE TABLE picture (
 
 CREATE TABLE `user` (
   id INT NOT NULL AUTO_INCREMENT,
-  mail VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
   `password` VARCHAR(50) NOT NULL,
   `name` VARCHAR(255) DEFAULT NULL,
   address_id INT DEFAULT NULL,
@@ -149,7 +149,7 @@ CREATE TABLE special_schedule (
   FOREIGN KEY (bar_id) REFERENCES bar(id)
 );
 
-CREATE TABLE `group` (
+CREATE TABLE groups (
   id INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   created_by INT NOT NULL,
@@ -171,7 +171,7 @@ CREATE TABLE user_group (
   deleted_at TIMESTAMP DEFAULT NULL,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (group_id) REFERENCES `group`(id),
+  FOREIGN KEY (group_id) REFERENCES groups(id),
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
@@ -195,7 +195,7 @@ CREATE TABLE good_time (
 
   PRIMARY KEY (id),
   FOREIGN KEY (bar_id) REFERENCES bar(id),
-  FOREIGN KEY (group_id) REFERENCES `group`(id),
+  FOREIGN KEY (group_id) REFERENCES groups(id),
   FOREIGN KEY (created_by) REFERENCES user(id),
   FOREIGN KEY (updated_by) REFERENCES user(id),
   FOREIGN KEY (deleted_by) REFERENCES user(id)

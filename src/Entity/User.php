@@ -24,9 +24,9 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="mail", type="string", length=255, nullable=false)
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
-    private $mail;
+    private $email;
 
     /**
      * @var string
@@ -117,14 +117,14 @@ class User
         return $this->id;
     }
 
-    public function getMail(): ?string
+    public function getEmail(): ?string
     {
-        return $this->mail;
+        return $this->email;
     }
 
-    public function setMail(string $mail): self
+    public function setEmail(string $email): self
     {
-        $this->mail = $mail;
+        $this->email = $email;
 
         return $this;
     }
