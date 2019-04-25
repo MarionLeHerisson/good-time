@@ -13,6 +13,7 @@ class UserFixture extends BaseFixture
             $user = new User();
             $user->setEmail(sprintf($this->faker->email));
             $user->setName(sprintf($this->faker->firstName . ' ' . $this->faker->lastName));
+            $user->setPassword('123456');
 
             return $user;
         });

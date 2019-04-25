@@ -20,7 +20,7 @@ abstract class BaseFixture extends Fixture
     /** @var ObjectManager */
     private $manager;
 
-    /** @var Generator\ */
+    /** @var Generator */
     protected $faker;
 
     private $referencesIndex = [];
