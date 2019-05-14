@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user", indexes={@ORM\Index(name="picture", columns={"picture"}), @ORM\Index(name="address_id", columns={"address_id"}), @ORM\Index(name="favorite_item", columns={"favorite_item"})})
  * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -104,6 +105,8 @@ class User
      * @ORM\Column(name="is_deleted", type="smallint", nullable=true)
      */
     private $isDeleted = '0';
+
+    private $roles = [];
 
     /**
      * @var \DateTime|null
@@ -273,4 +276,34 @@ class User
         return $this;
     }
 
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getSalt()
+    {
+        //
+    }
+
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    public function eraseCredentials()
+    {
+        //
+    }
 }
