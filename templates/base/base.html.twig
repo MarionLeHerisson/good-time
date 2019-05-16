@@ -25,7 +25,11 @@
     <body {% block bodyClass %}{% endblock %}>
 
         {% include('/base/nav.html.twig') %}
-        {% block body %}{% endblock %}
+
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+
         {% include('/base/footer.html.twig') %}
 
         {% block javascripts %}

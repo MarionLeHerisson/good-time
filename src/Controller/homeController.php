@@ -23,4 +23,20 @@ class homeController extends AbstractController
 
         ]);
     }
+
+    /**
+     * @Route(path="/inscription_bar", name="bar_registration")
+     */
+    public function barRegistration()
+    {
+        die("bar_registration");
+    }
+
+    /**
+     * @Route(path="/inscription", name="registration")
+     */
+    public function userRegistration()
+    {
+        die("registration");
+    }
 }

@@ -1,0 +1,8 @@
+body {
+    background-image: url("/media/mnm-all-552510-unsplash.jpg");
+    background-size: cover;
+}
+
+.cover-heading, .lead, .inner{
+    color: white;
+}

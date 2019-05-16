@@ -7,6 +7,10 @@ h1 {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+.container {
+    padding-top: 56px;
+}
+
 .rainbow {
     font-family: RainbowBridge;
     font-size: 8rem;
@@ -47,16 +51,6 @@ h1 {
 
 .bg-dark-custom {
     background-color: #233237;
-}
-
-/* Homepage */
-body {
-    background-image: url("/media/mnm-all-552510-unsplash.jpg");
-    background-size: cover;
-}
-
-.cover-heading, .lead, .inner{
-    color: white;
 }
 
 @font-face {
