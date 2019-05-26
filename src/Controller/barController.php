@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -18,6 +17,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  */
 class barController extends AbstractController
 {
+    // Todo : handle multiple bars ownership
+
     /**
      * @Route(path="/bar", name="bar_home")
      */

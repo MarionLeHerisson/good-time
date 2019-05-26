@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Address;
+use App\Entity\Bar;
 use App\Entity\User;
+use App\Form\AddressFormType;
+use App\Form\BarRegistrationFormType;
 use App\Form\UserRegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,31 +45,90 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/inscription", name="app_register")
+     * todo : si déjà connecté, rediriger vers /inscription-bar
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
+    public function userRegister(Request $request, UserPasswordEncoderInterface $passwordEncoder,
+                             GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
     {
-        $form = $this->createForm(UserRegistrationFormType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $form_user = $this->createForm(UserRegistrationFormType::class);
+        $form_user->handleRequest($request);
+
+        if ($form_user->isSubmitted() && $form_user->isValid()) {
+
             /** @var User $user */
-            $user = $form->getData();
+            $user = $form_user->getData();
             $user->setPassword($passwordEncoder->encodePassword(
                 $user,
                 $user->getPassword()
             ));
+
+//            if (true === $form_user['agreeTerms']->getData()) {
+//                $user->agreeToTerms();
+//            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            return $guardHandler->authenticateUserAndHandleSuccess(
+
+            $response = $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
                 $formAuthenticator,
                 'main'
             );
+
+            if (true === $form_user['isBarOwner']->getData()) {
+                $response = $this->redirect('/inscription-bar');
+            }
+
+            return $response;
         }
+
         return $this->render('security/register.html.twig', [
-            'registrationForm' => $form->createView(),
+            'userRegistrationForm' => $form_user->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/inscription-bar", name="app_bar_register")
+     * todo : page inaccessible if not connected
+     */
+    public function barRegister(Request $request) {
+
+        $form_bar = $this->createForm(BarRegistrationFormType::class);
+        $form_bar->handleRequest($request);
+
+        $form_address = $this->createForm(AddressFormType::class);
+        $form_address->handleRequest($request);
+
+        if ($form_bar->isSubmitted() && $form_bar->isValid()
+            && $form_address->isSubmitted() && $form_address->isValid()) {
+
+            /** @var Address $address */
+            $address = $form_address->getData();
+
+            // TODO : handle existing address
+            // TODO : handle Google Map's autocomplete
+
+            /** @var Bar $bar */
+            $bar = $form_bar->getData();
+            // Todo : real owner id
+            $ownerId = 1;
+            $bar->setOwnerId($ownerId);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($address);
+            $em->persist($bar);
+            $em->flush();
+
+            // Todo : message de confirmation d'inscription
+            $this->redirect('/inscription-bar');
+        }
+
+        return $this->render('security/bar-register.html.twig', [
+            'barRegistrationForm' => $form_bar->createView(),
+            'addressForm'         => $form_address->createView(),
         ]);
     }
 }
