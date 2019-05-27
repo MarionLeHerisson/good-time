@@ -45,7 +45,8 @@ class UserRegistrationFormType extends AbstractType
             ])
             ->add('isBarOwner', CheckboxType::class, [
                 'mapped' => false,
-                'label'  => 'Je suis propriétaire d\' un bar !'
+                'label'  => 'Je suis propriétaire d\' un bar !',
+                'required' => false
             ])
         ;
     }

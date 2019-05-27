@@ -58,14 +58,21 @@ class SecurityController extends AbstractController
 
             /** @var User $user */
             $user = $form_user->getData();
+
             $user->setPassword($passwordEncoder->encodePassword(
                 $user,
                 $user->getPassword()
             ));
 
-//            if (true === $form_user['agreeTerms']->getData()) {
-//                $user->agreeToTerms();
-//            }
+            if (true === $form_user['isBarOwner']->getData()) {
+                $user->setRoles([
+                    'ROLE_BAR'
+                ]);
+            } else {
+                $user->setRoles([
+                    'ROLE_USER'
+                ]);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -123,7 +130,7 @@ class SecurityController extends AbstractController
             $em->flush();
 
             // Todo : message de confirmation d'inscription
-            $this->redirect('/inscription-bar');
+            $this->redirect('/bar');
         }
 
         return $this->render('security/bar-register.html.twig', [
