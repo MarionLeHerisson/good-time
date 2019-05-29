@@ -111,6 +111,9 @@ class User implements UserInterface
      */
     private $isDeleted = '0';
 
+    /**
+     * @ORM\Column(type="json")
+     */
     private $roles = [];
 
     /**

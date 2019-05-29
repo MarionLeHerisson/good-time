@@ -8,6 +8,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Bar;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -22,10 +24,22 @@ class barController extends AbstractController
     /**
      * @Route(path="/bar", name="bar_home")
      */
-    public function homepageAction()
+    public function homepageAction(EntityManagerInterface $em)
     {
-        return $this->render('bar.html.twig', [
+        // Todo : handle bar owner without any bar
 
+        $ownerId = $this->getUser()->getId();
+
+        $repository = $em->getRepository(Bar::class);
+        $bar = $repository->findOneBy(['ownerId' => $ownerId]);
+
+        if(!$bar) {
+            $bar->setName('Il semblerait que vous n\'ayez pas encore enregistré votre bar. Nous vous invitons à '.
+                'le faire <a href="/inscription-bar">ici</a>.');
+        }
+
+        return $this->render('bar.html.twig', [
+            'bar' => $bar
         ]);
     }
 }
