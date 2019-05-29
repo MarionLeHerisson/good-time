@@ -5,13 +5,16 @@
 {% block body %}
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="h3 mb-3 font-weight-normal">Votre inscription</h1>
+                <h1 class="pt-50 pb-50">Votre inscription</h1>
                 {{ form_start(userRegistrationForm) }}
-                {{ form_widget(userRegistrationForm) }}
-
-                <button class="btn btn-lg btn-primary btn-block" type="submit">
-                    Passer de bons moments !
-                </button>
+                <div class="col-md-12">
+                    {{ form_widget(userRegistrationForm) }}
+                </div>
+                <div class="col-md-12 text-center btn-subscribe">
+                    <button class="btn btn-lg btn-primary mt-25" type="submit">
+                        Passer de bons moments !
+                    </button>
+                </div>
                 {{ form_end(userRegistrationForm) }}
             </div>
         </div>

@@ -18,10 +18,13 @@ class UserRegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
             // don't use password: avoid EVER setting that on a
             // field that might be persisted
             ->add('plainPassword', PasswordType::class, [
+                'attr' => ['class' => 'form-control'],
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -35,6 +38,7 @@ class UserRegistrationFormType extends AbstractType
             ])
             // Todo : link to CGU
             ->add('agreeTerms', CheckboxType::class, [
+                'attr' => ['class' => 'form-control'],
                 'mapped' => false,
                 'label' => 'J\'accèpte avec joie les conditions générales d\'utilisation !',
                 'constraints' => [
@@ -44,6 +48,7 @@ class UserRegistrationFormType extends AbstractType
                 ]
             ])
             ->add('isBarOwner', CheckboxType::class, [
+                'attr' => ['class' => 'form-control'],
                 'mapped' => false,
                 'label'  => 'Je suis propriétaire d\' un bar !',
                 'required' => false

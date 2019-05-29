@@ -16,6 +16,7 @@ class AddressFormType extends AbstractType
         // Todo : remove the damn comments :scream:
         $builder
             ->add('completeAddress', TextType::class, [
+                'attr' => ['class' => 'form-control'],
                 'mapped' => false,
 //                'constraints' => [
 //                    new NotBlank([
@@ -24,21 +25,27 @@ class AddressFormType extends AbstractType
 //                ]
             ])
             ->add('num', TextType::class, [
+                'attr' => ['class' => 'form-control'],
 //                'disabled' => true
             ])
             ->add('street', TextType::class, [
+                'attr' => ['class' => 'form-control'],
 //                'disabled' => true
             ])
             ->add('postCode', TextType::class, [
+                'attr' => ['class' => 'form-control'],
 //                'disabled' => true
             ])
             ->add('city', TextType::class, [
+                'attr' => ['class' => 'form-control'],
 //                'disabled' => true
             ])
             ->add('latitude', TextType::class, [
+                'attr' => ['class' => 'form-control'],
 //                'disabled' => true
             ])
             ->add('longitude', TextType::class, [
+                'attr' => ['class' => 'form-control'],
 //                'disabled' => true
             ])
         ;

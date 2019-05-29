@@ -5,16 +5,18 @@
 {% block body %}
     <div class="row">
         <div class="col-sm-12">
-            <h1 class="h3 mb-3 font-weight-normal">Quelques informations sur votre établissement</h1>
+            <h1 class="pt-50 pb-50">Quelques informations sur votre établissement</h1>
             {{ form_start(barRegistrationForm) }}
             {{ form_widget(barRegistrationForm) }}
             {#{{ form_start(addressForm) }}#}
             {{ form_widget(addressForm) }}
             {#{{ form_end(addressForm) }}#}
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">
-                Enregistrer cet établissement !
-            </button>
+            <div class="col-md-12 text-center btn-subscribe">
+                <button class="btn btn-lg btn-primary mt-25" type="submit">
+                    Enregistrer cet établissement !
+                </button>
+            </div>
             {{ form_end(barRegistrationForm) }}
         </div>
     </div>

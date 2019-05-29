@@ -1,4 +1,6 @@
-/* Main */
+/* =========================================
+                Main
+   ========================================= */
 p {
     font-family: 'Raleway', sans-serif;
 }
@@ -20,14 +22,41 @@ h1 {
     padding-top: 50px;
 }
 
-/* Nav */
+.pb-50 {
+    padding-bottom: 50px;
+}
+
+.mt-25 {
+    margin-top: 25px;
+}
+
+@font-face {
+    font-family: RainbowBridge;
+    src: local("RainbowBridge"),
+    url('/fonts/RainbowBridge.ttf');
+}
+
+/* =========================================
+                Nav
+   ========================================= */
 .btn-outline-success {
     color: #eac67a;
     border-color: #eac67a;
 }
 
+.btn-primary {
+    background-color: #dda329;
+}
+
+.btn-primary.active,
+.btn-primary:active{
+    background-color: #dda329;
+    box-shadow: 0 0 0 .2rem #eac67a;
+}
+
 .btn-outline-success.focus,
-.btn-outline-success:focus {
+.btn-outline-success:focus{
+    background-color: #dda329;
     box-shadow: 0 0 0 .2rem #eac67a;
 }
 
@@ -53,8 +82,25 @@ h1 {
     background-color: #233237;
 }
 
-@font-face {
-    font-family: RainbowBridge;
-    src: local("RainbowBridge"),
-    url('/fonts/RainbowBridge.ttf');
+/* =========================================
+                Forms
+   ========================================= */
+.form-control {
+    margin-top: 10px;
+    width: 50%;
+}
+
+label, input {
+    display: block;
+    width: 50%;
+    float: left;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(234, 198, 122, 0.25);
+}
+
+.btn-subscribe {
+    display: block;
+    float: left;
 }

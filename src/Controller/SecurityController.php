@@ -116,13 +116,13 @@ class SecurityController extends AbstractController
             /** @var Address $address */
             $address = $form_address->getData();
 
-            // TODO : handle existing address
+            // TODO : handle (existing address && existing name)
             // TODO : handle Google Map's autocomplete
 
             /** @var Bar $bar */
             $bar = $form_bar->getData();
-            // Todo : real owner id
-            $ownerId = 1;
+
+            $ownerId = $this->getUser()->getId();
             $bar->setOwnerId($ownerId);
 
             $em = $this->getDoctrine()->getManager();
@@ -130,8 +130,7 @@ class SecurityController extends AbstractController
             $em->persist($bar);
             $em->flush();
 
-            // Todo : message de confirmation d'inscription
-            $this->redirect('/bar');
+            return $this->redirect('/bar');
         }
 
         return $this->render('security/bar-register.html.twig', [
