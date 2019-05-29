@@ -5,19 +5,25 @@
 {% block body %}
     <div class="row">
         <div class="col-sm-12">
-            <h1 class="pt-50 pb-50">Quelques informations sur votre établissement</h1>
-            {{ form_start(barRegistrationForm) }}
-            {{ form_widget(barRegistrationForm) }}
-            {#{{ form_start(addressForm) }}#}
-            {{ form_widget(addressForm) }}
-            {#{{ form_end(addressForm) }}#}
 
-            <div class="col-md-12 text-center btn-subscribe">
-                <button class="btn btn-lg btn-primary mt-25" type="submit">
-                    Enregistrer cet établissement !
-                </button>
-            </div>
-            {{ form_end(barRegistrationForm) }}
+            {% if app.user %}
+                <h1 class="pt-50 pb-50">Quelques informations sur votre établissement</h1>
+                {{ form_start(barRegistrationForm) }}
+                {{ form_widget(barRegistrationForm) }}
+                {#{{ form_start(addressForm) }}#}
+                {{ form_widget(addressForm) }}
+                {#{{ form_end(addressForm) }}#}
+
+                <div class="col-md-12 text-center btn-subscribe">
+                    <button class="btn btn-lg btn-primary mt-25" type="submit">
+                        Enregistrer cet établissement !
+                    </button>
+                </div>
+                {{ form_end(barRegistrationForm) }}
+            {% else %}
+                <h1 class="pt-50 pb-50"><a href="/login">Connectez-vous</a> ou <a href="/inscription">inscrivez-vous</a> afin d'inscrire
+                    votre établissement.</h1>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
