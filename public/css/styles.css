@@ -89,16 +89,16 @@ h1 {
 /* =========================================
                 Forms
    ========================================= */
-.form-control {
-    margin-top: 10px;
-    width: 50%;
-}
+/*.form-control {*/
+    /*margin-top: 10px;*/
+    /*width: 50%;*/
+/*}*/
 
-label, input {
-    display: block;
-    width: 50%;
-    float: left;
-}
+/*label, input {*/
+    /*display: block;*/
+    /*width: 50%;*/
+    /*float: left;*/
+/*}*/
 
 .form-control:focus {
     box-shadow: 0 0 0 0.2rem rgba(234, 198, 122, 0.25);

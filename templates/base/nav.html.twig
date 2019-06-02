@@ -7,16 +7,17 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"><i class="material-icons">menu</i></a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <ul class="dropdown-menu" aria-labelledby="dropdown01">
                     {% if app.user %}
-                        <a class="dropdown-item" href="/logout">Déconnection</a>
-                        <a class="dropdown-item" href="/profil">Profil</a>
-                        <a class="dropdown-item" href="/bar">Bar</a>
+                        <li><a class="dropdown-item" href="/profil">Profil</a></li>
+                        <li><a class="dropdown-item" href="/bar">Bar</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout">Déconnexion</a></li>
                     {% else %}
-                        <a class="dropdown-item" href="/inscription">Inscription</a>
-                        <a class="dropdown-item" href="/login">Connection</a>
+                        <li><a class="dropdown-item" href="/inscription">Inscription</a></li>
+                        <li><a class="dropdown-item" href="/login">Connexion</a></li>
                     {% endif %}
-                </div>
+                </ul>
             </li>
             {% if not app.user %}
                 <li class="nav-item">
