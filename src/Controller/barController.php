@@ -39,7 +39,9 @@ class barController extends AbstractController
         }
 
         return $this->render('bar.html.twig', [
-            'bar' => $bar
+            'bar'                  => $bar,
+            'hasNewReservations'   => "true",  // TODO
+            'isReservationsActive' => " active",
         ]);
     }
 }

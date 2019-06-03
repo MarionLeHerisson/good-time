@@ -3,5 +3,59 @@
 {% block title %}Votre profil{% endblock %}
 
 {% block body %}
-<h1>{{ bar.name }}</h1>
+    <h1>{{ bar.name }}</h1>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <nav>
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link{{ isReservationsActive|default(' active') }}" data-toggle="tab" role="tab" aria-selected="{{ hasNewReservations }}"
+                       id="nav-reservation-tab" aria-controls="nav-reservation" href="#nav-reservation">
+                        &#x1F4C5; Réservations
+                    </a>
+                    <a class="nav-item nav-link" data-toggle="tab" role="tab" aria-selected="{{ bar.eventsPaneSelected|default('false') }}"
+                       id="nav-events-tab" aria-controls="nav-events" href="#nav-events">
+                        &#x1F918; Événements
+                    </a>
+                    <a class="nav-item nav-link" data-toggle="tab" role="tab" aria-selected="false"
+                       id="nav-menu-tab" aria-controls="nav-menu" href="#nav-menu">
+                        &#x1F37A; Carte
+                    </a>
+                    <a class="nav-item nav-link" data-toggle="tab" role="tab" aria-selected="false"
+                       id="nav-medias-tab" aria-controls="nav-medias" href="#nav-medias">
+                        &#x1F4F8; Médias
+                    </a>
+                    <a class="nav-item nav-link" data-toggle="tab" role="tab" aria-selected="false"
+                       id="nav-account-tab" aria-controls="nav-account" href="#nav-account">
+                        &#x1F481; Compte
+                    </a>
+                </div>
+            </nav>
+
+            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                <div class="tab-pane fade show{{ isReservationActive|default(' active') }}" role="tabpanel"
+                     id="nav-reservation" aria-labelledby="nav-reservation-tab">
+                    // Contenu résa
+                </div>
+                <div class="tab-pane fade show" role="tabpanel"
+                     id="nav-events" aria-labelledby="nav-events-tab">
+                    // Contenu événements
+                </div>
+                <div class="tab-pane fade show" role="tabpanel"
+                     id="nav-menu" aria-labelledby="nav-menu-tab">
+                    // Contenu carte
+                </div>
+                <div class="tab-pane fade show" role="tabpanel"
+                     id="nav-medias" aria-labelledby="nav-medias-tab">
+                    // Contenu médias
+                </div>
+                <div class="tab-pane fade show" role="tabpanel"
+                     id="nav-account" aria-labelledby="nav-account-tab">
+                    // Contenu compte
+                </div>
+            </div>
+        </div> <!-- col-md-12 -->
+
+    </div> <!-- row -->
 {% endblock %}
