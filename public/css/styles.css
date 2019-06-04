@@ -48,12 +48,14 @@ h1 {
     border-color: #eac67a;
 }
 
-.btn-primary {
+.btn-primary, .btn-success {
     background-color: #dda329;
 }
 
 .btn-primary.active,
-.btn-primary:active{
+.btn-primary:active,
+.btn-success.active,
+.btn-success:active{
     background-color: #dda329;
     box-shadow: 0 0 0 .2rem #eac67a;
 }

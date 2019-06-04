@@ -1,0 +1,13 @@
+<ul class="list-group">
+    {% for a in reservations.accepted %}
+        <li class="list-group-item">
+            <div class="float-md-left">
+                {{ a.name }} : pour <b>{{ a.nb_persons }} personnes</b> le <b>{{ a.date|date("d/m/Y à h:i") }}</b>
+                <br><small>{{ a.phone }} - {{ a.email }}</small>
+            </div>
+            <div class="float-md-right">
+                {% include 'components/btn-modal-reservation-deny.html.twig' %}
+            </div>
+        </li>
+    {% endfor %}
+</ul>

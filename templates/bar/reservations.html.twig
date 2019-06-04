@@ -29,14 +29,16 @@
 <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
     <div class="tab-pane fade show active nav-link" role="tabpanel"
          id="nav-reservation-waiting" aria-labelledby="nav-reservation-waiting-tab">
-        // Resa en attente
+        {% include 'bar/reservations-waiting.html.twig' %}
     </div>
     <div class="tab-pane fade show nav-link" role="tabpanel"
          id="nav-reservation-accepted" aria-labelledby="nav-reservation-accepted-tab">
-        // Resa acceptée
+        {% include 'bar/reservations-acceptedd.html.twig' %}
     </div>
     <div class="tab-pane fade show nav-link" role="tabpanel"
          id="nav-reservation-denied" aria-labelledby="nav-reservation-denied-tab">
-        // Resa refusées
+        {% include 'bar/reservations-denied.html.twig' %}
     </div>
 </div>
+
+{% block modalDenyReservation %}{% endblock %}
