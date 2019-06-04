@@ -3,7 +3,7 @@
 {% block title %}Votre profil{% endblock %}
 
 {% block body %}
-    <h1>{{ bar.name }}</h1>
+    <h1 class="pt-20">{{ bar.name }}</h1>
 
     <div class="row">
 
@@ -36,7 +36,7 @@
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                 <div class="tab-pane fade show{{ isReservationActive|default(' active') }}" role="tabpanel"
                      id="nav-reservation" aria-labelledby="nav-reservation-tab">
-                    // Contenu résa
+                    {% include 'bar/reservations.html.twig' %}
                 </div>
                 <div class="tab-pane fade show" role="tabpanel"
                      id="nav-events" aria-labelledby="nav-events-tab">
