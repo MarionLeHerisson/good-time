@@ -132,9 +132,12 @@ class SecurityController extends AbstractController
             return $this->redirect('/bar');
         }
 
+        $weekdays = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
         return $this->render('security/bar-register.html.twig', [
             'barRegistrationForm' => $form_bar->createView(),
             'addressForm'         => $form_address->createView(),
+            'weekdays'            => $weekdays,
         ]);
     }
 }

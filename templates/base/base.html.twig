@@ -9,10 +9,12 @@
         Dragons.">
         {%- block stylesheets -%}
             {# Bootstrap's stuff #}
-            <link rel="stylesheet" href="/css/bootstrap.css">
-            <link rel="stylesheet" href="/css/bootstrap-grid.css">
-            <link rel="stylesheet" href="/css/bootstrap-reboot.css">
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/css/bootstrap-grid.min.css">
+            <link rel="stylesheet" href="/css/bootstrap-reboot.min.css">
             <link rel="stylesheet" href="/css/bootstrap-theme.css">
+            {# Bootstrap toogle button #}
+            <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
             {# Google fonts #}
             <link rel="stylesheet"
                   href="https://fonts.googleapis.com/css?family=Raleway">
@@ -35,8 +37,8 @@
 
         {% include('/base/footer.html.twig') %}
 
-        {% block javascripts %}
-             {#Bootstrap's stuff #}
+        {%- block javascripts -%}
+             {# Bootstrap's stuff #}
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
                     crossorigin="anonymous"></script>
@@ -46,6 +48,8 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
                     integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
                     crossorigin="anonymous"></script>
+            {# Bootstrap toggle button #}
+            <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
         {% endblock %}
     </body>
 </html>

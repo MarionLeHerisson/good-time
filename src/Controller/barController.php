@@ -107,14 +107,17 @@ class barController extends AbstractController
                     'nb_persons' => 7,
                     'date' => '1565632800'
                 ],
-            ]
+            ],
         ];
+
+        $weekdays = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
         return $this->render('bar.html.twig', [
             'bar'                  => $bar,
             'hasNewReservations'   => "true", // TODO
             'isReservationsActive' => " active", // TODO
-            'reservations'         => $reservations
+            'reservations'         => $reservations,
+            'weekdays'             => $weekdays,
         ]);
     }
 }

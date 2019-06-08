@@ -114,3 +114,47 @@ h1 {
     display: block;
     float: left;
 }
+
+/* =========================================
+                Schedule
+   ========================================= */
+
+table.schedule-table, td, th {
+    border: 1px solid black;
+}
+
+thead {
+    float: left;
+}
+
+thead th {
+    display: block;
+}
+
+tbody {
+    float: left;
+}
+
+tbody tr {
+    display: block;
+    float: left;
+}
+
+tbody td {
+    display: block;
+}
+
+.schedule-table {table-layout: fixed; margin:40px auto 0px auto;  overflow-x:scroll; }
+.schedule-table, td, th{border-collapse:collapse; border:1px solid #777;}
+
+.schedule-closed {
+    background-color: white;
+}
+
+.schedule-open {
+    background-color: grey;
+}
+
+.schedule-happy {
+    background-color: #eac67a;
+}

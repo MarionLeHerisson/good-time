@@ -10,9 +10,8 @@
                 <h1 class="pt-50 pb-50">Quelques informations sur votre établissement</h1>
                 {{ form_start(barRegistrationForm) }}
                 {{ form_widget(barRegistrationForm) }}
-                {#{{ form_start(addressForm) }}#}
                 {{ form_widget(addressForm) }}
-                {#{{ form_end(addressForm) }}#}
+                {% include 'components/table-schedule.html.twig' %}
 
                 <div class="col-md-12 text-center btn-subscribe">
                     <button class="btn btn-lg btn-primary mt-25" type="submit">
