@@ -1,10 +1,19 @@
 <h2>Vos horaires :</h2>
 
+<small>Cliquez sur les créneaux ci-dessous pour les ajouter. Les créneaux non colorés signifient que vous êtes fermé à
+cet horaire là. Cochez le mode Happy Hour pour sélectionner vos horaires d'Happy Hour.</small>
+
 <!-- Default switch -->
 <div class="custom-control custom-switch">
     <input type="checkbox" class="custom-control-input" id="happySwitch">
     <label class="custom-control-label" for="happySwitch">Happy Hour</label>
 </div>
+
+{#<div class="row">#}
+    {#<div class="col">#}
+        {#<div id="schedule" class="jqs-demo mb-3"></div>#}
+    {#</div>#}
+{#</div>#}
 
 <table class="schedule-table">
     <thead>
@@ -53,8 +62,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
             integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
             crossorigin="anonymous"></script>
-    {# Bootstrap toggle button #}
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    {# Custom Javascript #}
-    <script type="text/javascript" src="/js/schedule.js"></script>
+    {# Schedule jQuery Plugin #}
+    {#<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
+    {#<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>#}
+    {#<script src="/js/jquery.schedule.js"></script>#}
+    {#<script src="/js/schedule.js"></script>#}
 {% endblock %}
