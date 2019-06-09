@@ -9,9 +9,9 @@
         Dragons.">
         {%- block stylesheets -%}
             {# Bootstrap's stuff #}
-            <link rel="stylesheet" href="/css/bootstrap.min.css">
-            <link rel="stylesheet" href="/css/bootstrap-grid.min.css">
-            <link rel="stylesheet" href="/css/bootstrap-reboot.min.css">
+            <link rel="stylesheet" href="/css/bootstrap.css">
+            <link rel="stylesheet" href="/css/bootstrap-grid.css">
+            <link rel="stylesheet" href="/css/bootstrap-reboot.css">
             <link rel="stylesheet" href="/css/bootstrap-theme.css">
             {# Google fonts #}
             <link rel="stylesheet"
@@ -21,12 +21,11 @@
             {# Google icons #}
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
                   rel="stylesheet">
+            {# Schedule jQuery Plugin #}
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+            <link rel="stylesheet" href="/css/jquery.schedule.css">
             {# Custom #}
             <link rel="stylesheet" href="/css/styles.css">
-            {# Schedule jQuery Plugin #}
-            {#<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">#}
-            {#<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">#}
-            {#<link rel="stylesheet" href="/css/jquery.schedule.css">#}
         {%- endblock -%}
     </head>
     <body {% block bodyClass %}{% endblock %}>
@@ -40,10 +39,13 @@
         {% include('/base/footer.html.twig') %}
 
         {%- block javascripts -%}
-             {# Bootstrap's stuff #}
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                    crossorigin="anonymous"></script>
+            {# Schedule jQuery Plugin #}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+            <script src="/js/jquery.schedule.js"></script>
+            <script src="/js/schedule.js"></script>
+
+            {# Bootstrap's stuff #}
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
                     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
                     crossorigin="anonymous"></script>
