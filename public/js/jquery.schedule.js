@@ -474,9 +474,10 @@
 
       // title
       var title = $('jqs-period-title', period).text();
-      var titleInput = '<div class="jqs-options-title-container">' +
-        '<input type="text" placeholder="' + this.settings.periodTitlePlaceholder +
-        '" value="' + title + '" class="jqs-options-title"></div>';
+      var titleInput = '';
+      // var titleInput = '<div class="jqs-options-title-container">' +
+      //   '<input type="text" placeholder="' + this.settings.periodTitlePlaceholder +
+      //   '" value="' + title + '" class="jqs-options-title"></div>';
 
       // color
       var colorInput = '';

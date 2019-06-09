@@ -1,7 +1,12 @@
 <h2>Vos horaires :</h2>
 
-<small>Cliquez sur les créneaux ci-dessous pour les ajouter. Les créneaux non colorés signifient que vous êtes fermé à
-cet horaire là. Cochez le mode Happy Hour pour sélectionner vos horaires d'Happy Hour.</small>
+<small>Cliquez sur les créneaux ci-dessous pour ajouter vos horaires.
+    Restez appuyé et glissez la souris vers le bas pour de plus grandes plages horaires.
+    Vous pouvez aussi redimensionner les cases d'horaires, et même les dupliquer !
+    Les créneaux non colorés signifient que vous êtes fermé à cet horaire là.
+    {#Cochez le mode Happy Hour pour sélectionner vos horaires d'Happy Hour. #}
+    Cliquez sur un créneau et sélectionnez la couleur jaune pour en faire un créneau Happy Hour.
+</small>
 
 <!-- Default switch -->
 <div class="custom-control custom-switch">
@@ -10,3 +15,6 @@ cet horaire là. Cochez le mode Happy Hour pour sélectionner vos horaires d'Hap
 </div>
 
 <div id="schedule" class="mb-3"></div>
+
+<input type="button" value="Export" id="export" />
+<textarea id="result"></textarea>
