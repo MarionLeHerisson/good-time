@@ -34,8 +34,7 @@ class barController extends AbstractController
         $bar = $repository->findOneBy(['ownerId' => $ownerId]);
 
         if(!$bar) {
-            $bar->setName('Il semblerait que vous n\'ayez pas encore enregistré votre bar. Nous vous invitons à '.
-                'le faire <a href="/inscription-bar">ici</a>.');
+            return $this->render('/bar/not-registered-yet.html.twig');
         }
 
         $reservations = [
