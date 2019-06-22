@@ -486,9 +486,9 @@
 
         colorInput = '<div class="jqs-options-color-container">';
         $.each(this.settings.periodColors, function (index, color) {
-          colorInput += '<button class="jqs-options-color" ' +
+          colorInput += '<a class="jqs-options-color" ' +
             'style="background-color: ' + color[0] + '; border-color: ' + color[1] + '; color:' + color[2] + '">' +
-            colorText + '</button>';
+            colorText + '</a>';
         });
         colorInput += '</div>';
       }
