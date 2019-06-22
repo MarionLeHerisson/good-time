@@ -26,8 +26,6 @@ class barController extends AbstractController
      */
     public function homepageAction(EntityManagerInterface $em)
     {
-        // Todo : handle bar owner without any bar
-
         $ownerId = $this->getUser()->getId();
 
         $repository = $em->getRepository(Bar::class);
@@ -37,7 +35,7 @@ class barController extends AbstractController
             return $this->render('/bar/not-registered-yet.html.twig');
         }
 
-        $reservations = [
+        $reservations = [       // TODO : dynamic
             'waiting' => [
                 [
                     'name' => 'John Doe',
@@ -109,14 +107,12 @@ class barController extends AbstractController
             ],
         ];
 
-        $weekdays = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
         return $this->render('bar.html.twig', [
             'bar'                  => $bar,
             'hasNewReservations'   => "true", // TODO
             'isReservationsActive' => " active", // TODO
             'reservations'         => $reservations,
-            'weekdays'             => $weekdays,
         ]);
     }
 }

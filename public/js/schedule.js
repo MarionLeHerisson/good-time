@@ -29,6 +29,6 @@ $(document).ready(function () {
     });
 });
 
-$("#export").click(function () {
-    $("#result").val($("#schedule").jqs('export'));
+$("#exportSchedule").click(function () {
+    $("#bar_registration_form_schedule").val($("#schedule").jqs('export'));
 });

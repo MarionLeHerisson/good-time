@@ -270,4 +270,7 @@ CREATE TABLE favorite_bar (
   PRIMARY KEY (id),
   FOREIGN KEY (bar_id) REFERENCES bar(id),
   FOREIGN KEY (user_id) REFERENCES user(id)
-)
+);
+
+-- TEMPORARY SOLUTION ?
+ALTER TABLE `bar` ADD `schedule` JSON NULL DEFAULT NULL AFTER `type`;

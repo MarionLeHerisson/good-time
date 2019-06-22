@@ -57,6 +57,13 @@ class Bar
     private $type;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="schedule", type="json", nullable=true)
+     */
+    private $schedule;
+
+    /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
@@ -138,6 +145,18 @@ class Bar
     public function setType(?int $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getSchedule(): ?string
+    {
+        return $this->schedule;
+    }
+
+    public function setSchedule(?string $schedule): self
+    {
+        $this->schedule = $schedule;
 
         return $this;
     }
