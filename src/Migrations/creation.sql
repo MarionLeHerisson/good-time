@@ -201,7 +201,7 @@ CREATE TABLE good_time (
   FOREIGN KEY (deleted_by) REFERENCES user(id)
 );
 
--- TODO : Message si transport favori = voiture && is_sam = 0
+-- TODO 2 : Message si transport favori = voiture && is_sam = 0
 -- Signaler Sam au barman
 CREATE TABLE user_good_time (
   id INT NOT NULL AUTO_INCREMENT,

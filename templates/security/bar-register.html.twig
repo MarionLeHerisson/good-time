@@ -9,11 +9,12 @@
             {% if app.user %}
                 <h1 class="pt-50 pb-50">Inscription</h1>
                 <h2>Quelques informations sur votre établissement</h2>
-                {{ form_start(barRegistrationForm, {'attr': {'enctype': 'multipart/form-data'}}) }} {# TODO : fix this #}
+                {{ form_start(barRegistrationForm, {'attr': {'enctype': 'multipart/form-data'}}) }} {# TODO 2 : fix this #}
 
                 {{ form_widget(barRegistrationForm) }}
                 {{ form_widget(addressForm) }}
                 {{ form_widget(pictureForm) }}
+                {# TODO 1 : Add correct labels #}
 
                 {% include 'components/table-schedule.html.twig' %}
 

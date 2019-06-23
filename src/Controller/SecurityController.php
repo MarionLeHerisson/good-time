@@ -49,7 +49,7 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/inscription", name="app_register")
-     * TODO : si déjà connecté, rediriger vers /inscription-bar
+     * TODO 1 : si déjà connecté, rediriger vers /inscription-bar
      */
     public function userRegister(Request $request, UserPasswordEncoderInterface $passwordEncoder,
                              GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
@@ -102,7 +102,7 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/inscription-bar", name="app_bar_register")
-     * TODO : page inaccessible if not connected
+     * TODO 1 : page inaccessible if not connected
      */
     public function barRegister(Request $request) {
 
@@ -130,15 +130,15 @@ class SecurityController extends AbstractController
             /** @var Picture $picture */
             $picture = $form_picture->getData();
 
-            // TODO : handle (existing address && existing name)
-            // TODO : handle Google Map's autocomplete
+            // TODO 1 : handle (existing address && existing name)
+            // TODO 1 : handle Google Map's autocomplete
 
             $path             = $picture->getPath();
             $allUploadedFiles = $request->files->all();
             $uploadedFile     = $allUploadedFiles['picture_form']['path'];
-            $extension        = $uploadedFile->getClientOriginalExtension();
+            $extension        = $uploadedFile->getClientOriginalExtension();    // TODO 1 : verify extension :grimace:
             $fileName         = md5(uniqid()).'.'.$extension;
-            $destination      = 'media/bar_pictures/'.$fileName;    // TODO : Who let the conf out ? Who who who who
+            $destination      = 'media/bar_pictures/'.$fileName;    // TODO 2 : Who let the conf out ? Who who who who
 
             move_uploaded_file($path, $destination);
             $picture->setPath($fileName);

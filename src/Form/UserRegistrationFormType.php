@@ -36,7 +36,7 @@ class UserRegistrationFormType extends AbstractType
                     ])
                 ]
             ])
-            // Todo : link to CGU
+            // Todo 2 : link to CGU
             ->add('agreeTerms', CheckboxType::class, [
                 'attr' => ['class' => 'form-control'],
                 'mapped' => false,

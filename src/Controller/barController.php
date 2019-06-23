@@ -19,7 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  */
 class barController extends AbstractController
 {
-    // Todo : handle multiple bars ownership
+    // Todo 2 : handle multiple bars ownership
 
     /**
      * @Route(path="/bar", name="bar_home")
@@ -35,7 +35,7 @@ class barController extends AbstractController
             return $this->render('/bar/not-registered-yet.html.twig');
         }
 
-        $reservations = [       // TODO : dynamic
+        $reservations = [       // TODO 1 : dynamic
             'waiting' => [
                 [
                     'name' => 'John Doe',
@@ -110,8 +110,8 @@ class barController extends AbstractController
 
         return $this->render('bar.html.twig', [
             'bar'                  => $bar,
-            'hasNewReservations'   => "true", // TODO
-            'isReservationsActive' => " active", // TODO
+            'hasNewReservations'   => "true", // TODO 1
+            'isReservationsActive' => " active", // TODO 1
             'reservations'         => $reservations,
         ]);
     }
