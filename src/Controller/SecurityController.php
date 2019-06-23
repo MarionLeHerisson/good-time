@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Address;
 use App\Entity\Bar;
+use App\Entity\BarPicture;
+use App\Entity\Picture;
 use App\Entity\User;
 use App\Form\AddressFormType;
 use App\Form\BarRegistrationFormType;
+use App\Form\PictureFormType;
 use App\Form\UserRegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,7 +49,7 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/inscription", name="app_register")
-     * todo : si déjà connecté, rediriger vers /inscription-bar
+     * TODO : si déjà connecté, rediriger vers /inscription-bar
      */
     public function userRegister(Request $request, UserPasswordEncoderInterface $passwordEncoder,
                              GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
@@ -99,15 +102,18 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/inscription-bar", name="app_bar_register")
-     * todo : page inaccessible if not connected
+     * TODO : page inaccessible if not connected
      */
     public function barRegister(Request $request) {
+
+        $form_address = $this->createForm(AddressFormType::class);
+        $form_address->handleRequest($request);
 
         $form_bar = $this->createForm(BarRegistrationFormType::class);
         $form_bar->handleRequest($request);
 
-        $form_address = $this->createForm(AddressFormType::class);
-        $form_address->handleRequest($request);
+        $form_picture = $this->createForm(PictureFormType::class);
+        $form_picture->handleRequest($request);
 
         if ($form_bar->isSubmitted() && $form_bar->isValid()
             && $form_address->isSubmitted() && $form_address->isValid()) {
@@ -115,11 +121,27 @@ class SecurityController extends AbstractController
             /** @var Address $address */
             $address = $form_address->getData();
 
+            /** @var Bar $bar */
+            $bar = $form_bar->getData();
+
+            /** @var BarPicture $barPicture */
+            $barPicture = new BarPicture();
+
+            /** @var Picture $picture */
+            $picture = $form_picture->getData();
+
             // TODO : handle (existing address && existing name)
             // TODO : handle Google Map's autocomplete
 
-            /** @var Bar $bar */
-            $bar = $form_bar->getData();
+            $path             = $picture->getPath();
+            $allUploadedFiles = $request->files->all();
+            $uploadedFile     = $allUploadedFiles['picture_form']['path'];
+            $extension        = $uploadedFile->getClientOriginalExtension();
+            $fileName         = md5(uniqid()).'.'.$extension;
+            $destination      = 'media/bar_pictures/'.$fileName;    // TODO : Who let the conf out ? Who who who who
+
+            move_uploaded_file($path, $destination);
+            $picture->setPath($fileName);
 
             $ownerId = $this->getUser()->getId();
             $bar->setOwnerId($ownerId);
@@ -127,6 +149,13 @@ class SecurityController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($address);
             $em->persist($bar);
+            $em->persist($picture);
+            $em->flush();
+
+            $barPicture->setBarId($bar->getId());
+            $barPicture->setPictureId($picture->getId());
+
+            $em->persist($barPicture);
             $em->flush();
 
             return $this->redirect('/bar');
@@ -135,6 +164,7 @@ class SecurityController extends AbstractController
         return $this->render('security/bar-register.html.twig', [
             'barRegistrationForm' => $form_bar->createView(),
             'addressForm'         => $form_address->createView(),
+            'pictureForm'         => $form_picture->createView(),
         ]);
     }
 }

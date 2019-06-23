@@ -4,9 +4,9 @@ namespace App\Form;
 
 use App\Entity\Bar;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,20 +22,15 @@ class BarRegistrationFormType extends AbstractType
             ->add('addressId', TextType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
-//            ->add('ownerId')
             ->add('phone', TelType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('type', NumberType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('schedule', TextareaType::class, [
-                'attr' => ['hidden' => 'hidden',
-                            'id'    => 'scheduleExport'],
+            ->add('schedule', HiddenType::class, [
+                'attr' => ['hidden' => 'hidden'],
             ])
-//            ->add('createdAt')
-//            ->add('isDeleted')
-//            ->add('deletedAt')
         ;
     }
 

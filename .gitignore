@@ -18,4 +18,5 @@
 
 ###> custom ###
 .idea/
+/public/media/bar_pictures/
 ###< custom ###
