@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Bar;
+use App\Repository\PictureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,18 +25,48 @@ class barController extends AbstractController
     /**
      * @Route(path="/bar", name="bar_home")
      */
-    public function homepageAction(EntityManagerInterface $em)
+    public function homepageAction(EntityManagerInterface $em, PictureRepository $pictureRepository)
     {
         $ownerId = $this->getUser()->getId();
 
-        $repository = $em->getRepository(Bar::class);
-        $bar = $repository->findOneBy(['ownerId' => $ownerId]);
+        $barRepository = $em->getRepository(Bar::class);
+        $bar = $barRepository->findOneBy(['ownerId' => $ownerId]);
 
         if(!$bar) {
             return $this->render('/bar/not-registered-yet.html.twig');
         }
 
-        $reservations = [       // TODO 1 : dynamic
+        $reservations = $this->getReservations();
+        $mainPicture  = $this->getMainPicture();
+
+        return $this->render('bar.html.twig', [
+            'bar'                  => $bar,
+            'hasNewReservations'   => "true", // TODO 1
+            'isReservationsActive' => " active", // TODO 1
+            'reservations'         => $reservations,
+            'mainPicture'          => $mainPicture,
+        ]);
+    }
+
+    // FIXTURES FUNCTIONS // TODO 1 : dynamic
+    public function getMainPicture()
+    {
+        // SELECT p.path
+        // FROM picture p
+        // LEFT JOIN bar_picture bp
+        // ON bp.picture_id = p.id
+        // WHERE bp.bar_id = :barId
+        // AND bp.is_main = 1;
+//        $query = $em
+//            ->createQuery('SELECT p.path FROM picture p LEFT JOIN bar_picture bp ON bp.picture_id = p.id WHERE bp.bar_id = :barId AND bp.is_main = 1;')
+//            ->setParameter('barId', $bar->getId())
+//        ;
+
+        return '03821961a61c7747c73284f01d260323.jpg';
+    }
+
+    public function getReservations() {
+        return [
             'waiting' => [
                 [
                     'name' => 'John Doe',
@@ -106,13 +137,5 @@ class barController extends AbstractController
                 ],
             ],
         ];
-
-
-        return $this->render('bar.html.twig', [
-            'bar'                  => $bar,
-            'hasNewReservations'   => "true", // TODO 1
-            'isReservationsActive' => " active", // TODO 1
-            'reservations'         => $reservations,
-        ]);
     }
 }

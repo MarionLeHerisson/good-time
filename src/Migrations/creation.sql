@@ -115,6 +115,7 @@ CREATE TABLE bar_picture (
   id INT NOT NULL AUTO_INCREMENT,
   bar_id INT NOT NULL,
   picture_id INT NOT NULL,
+  is_main INT NOT NULL DEFAULT 0,
 
   is_deleted INT DEFAULT 0,
 

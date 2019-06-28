@@ -154,6 +154,7 @@ class SecurityController extends AbstractController
 
             $barPicture->setBarId($bar->getId());
             $barPicture->setPictureId($picture->getId());
+            $barPicture->setIsMain(1);
 
             $em->persist($barPicture);
             $em->flush();
