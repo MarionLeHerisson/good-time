@@ -92,7 +92,7 @@ CREATE TABLE `user` (
   FOREIGN KEY (picture) REFERENCES picture(id),
   FOREIGN KEY(favorite_item) REFERENCES item(id)
 );
--- Mitzva, Raccuda, Omètre, Atin, Atineur, Beque, Bichette, Bapapa, Biturique, Boteur, Bouillage, Illa, Issement, Jot, Iton
+-- Mitzva, Raccuda, Omètre, Atin, Atineur, Beque, Bichette, Bapapa, Biturique, Boteur, Bouillage, Illa, Issement, Jot, Iton, Akafrites
 CREATE TABLE bar (
   id INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
