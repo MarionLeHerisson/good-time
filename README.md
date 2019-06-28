@@ -10,7 +10,7 @@ You'll need Symfony, composer & co.
 
 Run `bin/console server:run` in the project's directory.
 
-In dev mode, also launch Wamp/Lamp to have a local database. A creation file and a dump are located in `src/Migrations/`. 
+In dev mode, also launch Wamp/Lamp to have a local database. A creation file and a dump are located in `src/Migrations/`. User password is always `123456`.
 
 -----------------
 Some refs for the Good Time team :
