@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Psr\Container\ContainerInterface;
 
 /**
  * Bar
@@ -13,13 +12,6 @@ use Psr\Container\ContainerInterface;
  */
 class Bar
 {
-    private $container;
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
     /**
      * @var int
      *
