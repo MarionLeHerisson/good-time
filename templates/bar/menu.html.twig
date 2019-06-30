@@ -1,0 +1,22 @@
+{% include 'components/btn-modal-add-item.html.twig' %}
+
+<button type="button" class="btn btn-success">Créer une réduction</button>
+
+<ul class="list-group">
+    {% for item_category in products %}
+        {% for item in item_category %}
+            <li class="list-group-item">
+                <div class="float-md-left">
+                    <b>{{ item.name }}</b> {{ item.price }}
+                </div>
+                <div class="float-md-right">
+                    <button type="button" class="btn btn-success">Modifier</button>
+                    <button type="button" class="btn btn-danger">Supprimer</button>
+                    <button type="button" class="btn btn-success">Appliquer une réduction</button>
+                </div>
+            </li>
+        {% endfor %}
+    {% endfor %}
+</ul>
+
+{% block modalAddItem %}{% endblock %}

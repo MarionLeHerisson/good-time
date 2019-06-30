@@ -38,8 +38,10 @@ class barController extends AbstractController
             return $this->render('/bar/not-registered-yet.html.twig');
         }
 
-        $reservations = $this->getReservations();
-        $mainPicture  = $this->getMainPicture();
+        $reservations  = $this->getReservations();
+        $mainPicture   = $this->getMainPicture();
+        $products      = $this->getProducts();
+        $allCategories = $this->getAllCategories();
 
         return $this->render('bar.html.twig', [
             'bar'                  => $bar,
@@ -47,6 +49,8 @@ class barController extends AbstractController
             'isReservationsActive' => " active", // TODO 1
             'reservations'         => $reservations,
             'mainPicture'          => $mainPicture,
+            'products'             => $products,
+            'allCategories'        => $allCategories,
         ]);
     }
 
@@ -63,7 +67,12 @@ class barController extends AbstractController
             $barRepository = $em->getRepository(Bar::class);
             $bar = $barRepository->findOneBy(['ownerId' => $ownerId]);
 
-            $bar->setSchedule($data);
+            if(isset($data['price_hh'])) {
+                // TODO 1 : add new item
+            } else {
+                $bar->setSchedule($data);
+            }
+
             $em->persist($bar);
             $em->flush();
 
@@ -161,6 +170,98 @@ class barController extends AbstractController
                     'date' => '1565632800'
                 ],
             ],
+        ];
+    }
+
+    public function getProducts() {
+        return [
+            'cocktails' => [
+                [
+                    'name'     => 'Mojito',
+                    'price'    => '6,50 €',
+                    'hh_price' => '5,00 €',
+                    'discount' => '4,00 €',
+                ],
+                [
+                    'name'     => 'Cuba Libre',
+                    'price'    => '6,50 €',
+                    'hh_price' => '5,00 €',
+                    'discount' => '',
+                ],
+                [
+                    'name'     => 'Caipirinha',
+                    'price'    => '6,50 €',
+                    'hh_price' => '5,00 €',
+                    'discount' => '',
+                ],
+            ],
+            'bières' => [
+                [
+                    'name'     => '1664',
+                    'price'    => '5,50 €',
+                    'hh_price' => '4,00 €',
+                    'discount' => '',
+                ],
+                [
+                    'name'     => 'Guinness',
+                    'price'    => '6,50 €',
+                    'hh_price' => '5,00 €',
+                    'discount' => '',
+                ],
+            ],
+            'tapas' => [
+                [
+                    'name'     => 'planche de charcuterie',
+                    'price'    => '10,50 €',
+                    'hh_price' => '',
+                    'discount' => '',
+                ],
+                [
+                    'name'     => 'Planche de fromages',
+                    'price'    => '8,50 €',
+                    'hh_price' => '',
+                    'discount' => '',
+                ],
+                [
+                    'name'     => 'planche mixte',
+                    'price'    => '15,50 €',
+                    'hh_price' => '',
+                    'discount' => '',
+                ],
+            ],
+            'plats' => [
+                [
+                    'name'     => 'burger',
+                    'price'    => '13,50 €',
+                    'hh_price' => '',
+                    'discount' => '',
+                ],
+                [
+                    'name'     => 'fish & chips',
+                    'price'    => '9,50 €',
+                    'hh_price' => '',
+                    'discount' => '7,00 €',
+                ],
+            ]
+        ];
+    }
+
+    public function getAllCategories() {
+        return [
+            'Bières',
+            'Boissons chaudes',
+            'Boissons sans alcool',
+            'Cocktails',
+            'Cocktails sans alcool',
+            'Entrées',
+            'Plats',
+            'Pressions',
+            'Spiritueux',
+            'Tapas',
+            'Vins',
+            'Vins blancs',
+            'Vins rosés',
+            'Vins rouges',
         ];
     }
 }

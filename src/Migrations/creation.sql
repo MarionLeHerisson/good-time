@@ -28,6 +28,7 @@ CREATE TABLE item (
 CREATE TABLE menu (
   id INT NOT NULL AUTO_INCREMENT,
   bar_id INT NOT NULL,
+  menu_section VARCHAR(50), -- En tête dans le menu : "boissons chaudes", "bières", etc
 
   PRIMARY KEY (id),
   FOREIGN KEY (bar_id) REFERENCES bar(id)
@@ -38,6 +39,7 @@ CREATE TABLE menu_item (
    menu_id INT NOT NULL,
    item_id INT NOT NULL,
    price FLOAT NOT NULL,
+   hh_price FLOAT DEFAULT NULL,
 
    is_deleted SMALLINT DEFAULT 0,
 

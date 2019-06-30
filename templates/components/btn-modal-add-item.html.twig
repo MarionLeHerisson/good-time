@@ -1,0 +1,75 @@
+<button type="button" class="btn btn-success" id="btnAddItem"
+        data-toggle="modal" data-target="#modal-add-item">Ajouter</button>
+
+{% block modalAddItem %}
+    <!-- Modal -->
+    <div id="modal-add-item" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Ajouter un produit :</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="float-md-left col-md-12">
+                        <label for="productName">Nom du produit :</label>
+                    </div>
+                    <div class="float-md-left col-md-10">
+                        <input type="text" class="form-control" id="productName">
+                    </div>
+
+                    <div class="float-md-left col-md-12">
+                        <label for="productDescription">Description du produit :</label>
+                    </div>
+                    <div class="float-md-left col-md-10">
+                        <input type="text" class="form-control" id="productDescription">
+                    </div>
+
+                    <div class="float-md-left col-md-6">
+                        <label for="productPrice">Prix :</label>
+                    </div>
+                    <div class="float-md-left col-md-6">
+                        <label for="productPriceHh">Prix en Happy Hour :</label>
+                    </div>
+                    <div class="float-md-left col-md-4">
+                        <input type="text" class="form-control" id="productPrice">
+                    </div>
+                    <div class="float-md-left col-md-1">€</div>
+
+                    <div class="float-md-left col-md-4">
+                        <input type="text" class="form-control" id="productPriceHh" placeholder="(Laissez vide si non concerné)">
+                    </div>
+                    <div class="float-md-left col-md-1">€</div>
+
+                    <div class="float-md-left col-md-12">
+                        <label for="productType">Catégorie au sein du menu :</label>
+                    </div>
+                    <div class="float-md-left col-md-10">
+                        <select class="form-control" id="productType">
+                            {% for category in allCategories %}
+                                <option name="{{ category }}">{{ category }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    {# TODO 2 : Ajouter nouvelle catégorie#}
+                    {#<div class="float-md-left col-md-2"> + </div>#}
+
+                    {# TODO 2 : Déclarer les allergènes / la présence d'alcool #}
+                    {#<label for="productAllerg">Allergènes :</label>#}
+                    {#<select class="form-control" id="productAllerg">#}
+                        {# Checkable options #}
+                    {#</select>#}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" id="saveNewItem">Ajouter</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
