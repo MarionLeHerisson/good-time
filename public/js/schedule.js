@@ -1,7 +1,11 @@
 $(document).ready(function () {
 
-    const scheduleData = JSON.parse($("#barSchedule").text());
-    console.log(scheduleData);
+    const barScheduleData = $("#barSchedule");
+    let scheduleData = [];
+
+    if(barScheduleData.length !== 0) {
+        scheduleData = JSON.parse(barScheduleData.text());
+    }
 
     $("#schedule").jqs({
         days: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
@@ -22,5 +26,38 @@ $(document).ready(function () {
 });
 
 $("#exportSchedule").click(function () {
-    $("#bar_registration_form_schedule").val($("#schedule").jqs('export'));
+
+    const barRegistration = $("#bar_registration_form_schedule");
+
+    if(barRegistration.length !== 0) {
+        barRegistration.val($("#schedule").jqs('export'));
+    }
+    else {
+        let data = $("#schedule").jqs('export');
+        console.log(data.toString());
+
+        myAjax('/bar/ajax', data, (ret) => {
+            let successMessage = $("#successScheduleMessage");
+            successMessage.text(ret);
+            successMessage.removeAttr('hidden');
+        });
+    }
+
 });
+
+/**
+ * @param url		// String - The Controller to be called
+ * @param parameter // Array  - parameters
+ * @param callback	// Callable - Called if success
+ */
+function myAjax(url, parameter, callback) {
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            parameter: parameter
+        },
+        success: callback
+    });
+}

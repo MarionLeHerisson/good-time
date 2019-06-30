@@ -12,6 +12,8 @@ use App\Entity\Bar;
 use App\Repository\PictureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
@@ -25,7 +27,7 @@ class barController extends AbstractController
     /**
      * @Route(path="/bar", name="bar_home")
      */
-    public function homepageAction(EntityManagerInterface $em, PictureRepository $pictureRepository)
+    public function homepageAction(EntityManagerInterface $em)
     {
         $ownerId = $this->getUser()->getId();
 
@@ -46,6 +48,29 @@ class barController extends AbstractController
             'reservations'         => $reservations,
             'mainPicture'          => $mainPicture,
         ]);
+    }
+
+    /**
+     * @Route(path="/bar/ajax", name="bar_ajax")
+     */
+    public function ajaxAction(Request $request, EntityManagerInterface $em)
+    {
+        if ($request->isXmlHttpRequest()) {
+
+            $data    = $request->request->all()['parameter'];
+            $ownerId = $this->getUser()->getId();
+
+            $barRepository = $em->getRepository(Bar::class);
+            $bar = $barRepository->findOneBy(['ownerId' => $ownerId]);
+
+            $bar->setSchedule($data);
+            $em->persist($bar);
+            $em->flush();
+
+            return new JsonResponse('Vos nouveaux horaires ont bien été enregistrés !');
+        }
+
+        return new JsonResponse('Une erreur est survenue, vos nouveaux horaires n\'ont pas pu être enregistrés...');
     }
 
     // FIXTURES FUNCTIONS // TODO 1 : dynamic
