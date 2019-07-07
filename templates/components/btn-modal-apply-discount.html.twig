@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-success btnApplyDiscount"
+<button type="button" class="btn btn-success btnApplyDiscount" data-item="{{ itemId }}"
         data-toggle="modal" data-target="#modal-apply-discount">Appliquer une réduction</button>
 
 {% block modalApplyDiscount %}
@@ -19,7 +19,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal" id="btn-apply-discount">Appliquer</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"
+                            id="btn-apply-discount" data-item="{{ itemId }}">Appliquer</button>
                 </div>
             </div>
 

@@ -177,18 +177,21 @@ class barController extends AbstractController
         return [
             'cocktails' => [
                 [
+                    'id'       => 874,
                     'name'     => 'Mojito',
                     'price'    => '6,50 €',
                     'hh_price' => '5,00 €',
                     'discount' => '4,00 €',
                 ],
                 [
+                    'id'       => 844,
                     'name'     => 'Cuba Libre',
                     'price'    => '6,50 €',
                     'hh_price' => '5,00 €',
                     'discount' => '',
                 ],
                 [
+                    'id'       => 13,
                     'name'     => 'Caipirinha',
                     'price'    => '6,50 €',
                     'hh_price' => '5,00 €',
@@ -197,12 +200,14 @@ class barController extends AbstractController
             ],
             'bières' => [
                 [
+                    'id'       => 22,
                     'name'     => '1664',
                     'price'    => '5,50 €',
                     'hh_price' => '4,00 €',
                     'discount' => '',
                 ],
                 [
+                    'id'       => 740,
                     'name'     => 'Guinness',
                     'price'    => '6,50 €',
                     'hh_price' => '5,00 €',
@@ -211,18 +216,21 @@ class barController extends AbstractController
             ],
             'tapas' => [
                 [
+                    'id'       => 4,
                     'name'     => 'planche de charcuterie',
                     'price'    => '10,50 €',
                     'hh_price' => '',
                     'discount' => '',
                 ],
                 [
+                    'id'       => 653,
                     'name'     => 'Planche de fromages',
                     'price'    => '8,50 €',
                     'hh_price' => '',
                     'discount' => '',
                 ],
                 [
+                    'id'       => 99,
                     'name'     => 'planche mixte',
                     'price'    => '15,50 €',
                     'hh_price' => '',
@@ -231,12 +239,14 @@ class barController extends AbstractController
             ],
             'plats' => [
                 [
+                    'id'       => 150,
                     'name'     => 'burger',
                     'price'    => '13,50 €',
                     'hh_price' => '',
                     'discount' => '',
                 ],
                 [
+                    'id'       => 998,
                     'name'     => 'fish & chips',
                     'price'    => '9,50 €',
                     'hh_price' => '',

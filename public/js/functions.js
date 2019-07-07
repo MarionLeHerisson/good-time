@@ -67,6 +67,7 @@ function handleSchedule() {
 }
 
 function handleMenu() {
+    // Ajouter
     $("#saveNewItem").click(() => {
         let data = {
             name: $("#productName").val(),
@@ -80,8 +81,12 @@ function handleMenu() {
 
         });
     });
-}
 
-$('.btnApplyDiscount').on('click', (e) => {
-    $('.productName').text($(e.currentTarget).closest('li').children().find('.js-itemName').text());
-});
+    // Appliquer une réduction
+    $('.btnApplyDiscount').on('click', (e) => {
+        let itemId = $(e.currentTarget).data('item');
+        let itemName = $('#item-name-' + itemId).text();
+        $('.productName').text(itemName);
+    });
+
+}

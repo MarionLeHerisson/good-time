@@ -6,12 +6,12 @@
         {% for item in item_category %}
             <li class="list-group-item">
                 <div class="float-md-left">
-                    <b class="js-itemName">{{ item.name }}</b> <span class="js-itemPrice">{{ item.price }}</span>
+                    <b id="item-name-{{ item.id }}">{{ item.name }}</b> <span id="item-price-{{ item.id }}">{{ item.price }}</span>
                 </div>
                 <div class="float-md-right">
-                    <button type="button" class="btn btn-success">Modifier</button>
+                    <button type="button" class="btn btn-success" id="btn-edit-{{ item.id }}">Modifier</button>
                     <button type="button" class="btn btn-danger">Supprimer</button>
-                    {% include('components/btn-modal-apply-discount.html.twig') %}
+                    {% include('components/btn-modal-apply-discount.html.twig') with {'itemId': item.id } %}
                 </div>
             </li>
         {% endfor %}
