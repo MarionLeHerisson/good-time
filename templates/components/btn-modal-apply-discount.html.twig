@@ -1,0 +1,29 @@
+<button type="button" class="btn btn-success btnApplyDiscount"
+        data-toggle="modal" data-target="#modal-apply-discount">Appliquer une réduction</button>
+
+{% block modalApplyDiscount %}
+    <!-- Modal -->
+    <div id="modal-apply-discount" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Appliquer une réduction sur ce produit : <span class="productName"></span></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body col-md-12">
+                    <label for="reduction" class="col-md-5 float-md-left">Prix après réduction</label>
+                    <input type="text" placeholder="00,00" id="reduction" class="col-md-5 form-control float-md-left">
+                    <span class="col-md-1 float-md-left">€</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" id="btn-apply-discount">Appliquer</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

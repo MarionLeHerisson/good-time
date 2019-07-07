@@ -81,3 +81,7 @@ function handleMenu() {
         });
     });
 }
+
+$('.btnApplyDiscount').on('click', (e) => {
+    $('.productName').text($(e.currentTarget).closest('li').children().find('.js-itemName').text());
+});
