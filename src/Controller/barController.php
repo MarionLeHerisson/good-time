@@ -9,7 +9,6 @@
 namespace App\Controller;
 
 use App\Entity\Bar;
-use App\Repository\PictureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
