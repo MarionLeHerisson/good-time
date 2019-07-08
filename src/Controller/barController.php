@@ -34,23 +34,23 @@ class barController extends AbstractController
         $barRepository = $em->getRepository(Bar::class);
         $bar = $barRepository->findOneBy(['ownerId' => $ownerId]);
 
-        if(!$bar) {
+        if (!$bar) {
             return $this->render('/bar/not-registered-yet.html.twig');
         }
 
-        $reservations  = $this->getReservations();
-        $mainPicture   = $this->getMainPicture();
-        $products      = $this->getProducts();
+        $reservations = $this->getReservations();
+        $mainPicture = $this->getMainPicture();
+        $products = $this->getProducts();
         $allCategories = $this->getAllCategories();
 
         return $this->render('bar.html.twig', [
-            'bar'                  => $bar,
-            'hasNewReservations'   => "true", // TODO 1
+            'bar' => $bar,
+            'hasNewReservations' => "true", // TODO 1
             'isReservationsActive' => " active", // TODO 1
-            'reservations'         => $reservations,
-            'mainPicture'          => $mainPicture,
-            'products'             => $products,
-            'allCategories'        => $allCategories,
+            'reservations' => $reservations,
+            'mainPicture' => $mainPicture,
+            'products' => $products,
+            'allCategories' => $allCategories,
         ]);
     }
 
@@ -61,25 +61,71 @@ class barController extends AbstractController
     {
         if ($request->isXmlHttpRequest()) {
 
-            $data    = $request->request->all()['parameter'];
-            $ownerId = $this->getUser()->getId();
-
-            $barRepository = $em->getRepository(Bar::class);
-            $bar = $barRepository->findOneBy(['ownerId' => $ownerId]);
-
-            if(isset($data['price_hh'])) {
-                // TODO 1 : add new item
-            } else {
-                $bar->setSchedule($data);
-            }
-
-            $em->persist($bar);
-            $em->flush();
-
-            return new JsonResponse('Vos nouveaux horaires ont bien été enregistrés !');
+            $data = $request->request->all();
+            $this->handleAjaxRequest($em, $data['action'], $data['parameter']);
         }
+        else {
+            return new JsonResponse('Une erreur est survenue');
+        }
+    }
 
-        return new JsonResponse('Une erreur est survenue, vos nouveaux horaires n\'ont pas pu être enregistrés...');
+    private function handleAjaxRequest($em, $action, $parameter) {
+
+        switch ($action) {
+            case 'applyDiscount' :
+                $this->applyDiscount($em, $parameter);
+                break;
+            case 'createDiscount' :
+                $this->createDiscount($em, $parameter);
+                break;
+            case 'editItem' :
+                $this->editItem($em, $parameter);
+                break;
+            case 'deleteItem' :
+                $this->deleteItem($em, $parameter);
+                break;
+            case 'exportSchedule' :
+                $this->exportSchedule($em, $parameter);
+                break;
+            case 'saveNewItem' :
+                $this->saveNewItem($em, $parameter);
+                break;
+        }
+    }
+
+    private function applyDiscount($em, $parameter) {
+        die('Réduction appliquée : ' . $parameter['new_price'] . ' sur le produit ' . $parameter['item_id']);
+    }
+
+    private function createDiscount($em, $parameter) {
+        die('Réduction appliquée : ' . $parameter['new_price'] . ' sur les produits de type ' . $parameter['category']);
+    }
+
+    private function deleteItem($em, $parameter) {
+        die('Element supprimé : ' . $parameter['item_id']);
+    }
+
+    private function editItem($em, $parameter) {
+        die('Nouveau prix enregistré' . print_r($parameter));
+    }
+
+    private function exportSchedule($em, $parameter) {
+
+        $ownerId = $this->getUser()->getId();
+
+        $barRepository = $em->getRepository(Bar::class);
+        $bar = $barRepository->findOneBy(['ownerId' => $ownerId]);
+
+        $bar->setSchedule($parameter);
+
+        $em->persist($bar);
+        $em->flush();
+
+        die('Vos nouveaux horaires ont bien été enregistrés !');
+    }
+
+    private function saveNewItem($em, $parameter) {
+        die('Nouvel item enregistrée : ' . print_r($parameter));
     }
 
     // FIXTURES FUNCTIONS // TODO 1 : dynamic

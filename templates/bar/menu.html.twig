@@ -8,7 +8,12 @@
 
                 <div class="float-md-left">
                     <b id="item-name-{{ item.id }}">{{ item.name }}</b>&nbsp;
-                    <span id="item-price-{{ item.id }}">{{ item.price }}</span>
+                    {% if item.discount is empty %}
+                        <span id="item-price-{{ item.id }}">{{ item.price }}</span>
+                    {% else %}
+                        <strike><span id="item-price-{{ item.id }}">{{ item.price }}</span></strike>
+                        <span id="item-discount-{{ item.id }}">{{ item.discount }}</span>
+                    {% endif %}
                     <span id="item-original-price-{{ item.id }}" hidden="hidden">{{ item.price }}</span>
                 </div>
 
