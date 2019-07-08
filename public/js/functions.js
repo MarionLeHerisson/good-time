@@ -66,6 +66,7 @@ function handleSchedule() {
     });
 }
 
+// Carte
 function handleMenu() {
     // Ajouter
     $("#saveNewItem").click(() => {
@@ -89,4 +90,64 @@ function handleMenu() {
         $('.productName').text(itemName);
     });
 
+
+    // Modifier / Supprimer
+    // Enregistrer / Annuler
+    $('.js-btn-action').on('click', (e) => {
+
+        let itemId = $(e.currentTarget).data('item');
+        let btn1 = $('#edit-' + itemId);
+        let btn2 = $('#delete-' + itemId);
+
+        let itemPriceContainer = $('#item-price-' + itemId);
+        let originalPrice = $('#item-original-price-' + itemId).text();
+
+        // Modifier / Enregistrer
+        if ($(e.currentTarget).hasClass('js-btn-edit')) {
+
+            if($(e.currentTarget).data('action') === 'edit') {
+
+                itemPriceContainer.html('<input type="text" id="newItemPrice-' + itemId + '" placeholder="' + originalPrice + '">');
+
+                btn1.data('action', 'save');
+                btn1.text('Enregistrer');
+
+                btn2.data('action', 'cancel');
+                btn2.text('Annuler');
+            }
+            else if($(e.currentTarget).data('action') === 'save') {
+                // todo 1 : ajax
+
+                itemPriceContainer.text(originalPrice); // todo 1 : newPrice
+
+                btn1.data('action', 'edit');
+                btn1.text('Modifier');
+
+                btn2.data('action', 'delete');
+                btn2.text('Supprimer');
+            }
+        }
+
+        // Supprimer / Annuler
+        if ($(e.currentTarget).hasClass('js-btn-delete')) {
+
+            if($(e.currentTarget).data('action') === 'delete') {
+                // todo 1 : ajax
+
+                $(e.currentTarget).closest('li').attr('hidden', 'hidden');
+
+                console.log("deleting row !");
+            }
+            else if($(e.currentTarget).data('action') === 'cancel') {
+
+                itemPriceContainer.text(originalPrice);
+
+                btn1.data('action', 'edit');
+                btn1.text('Modifier');
+
+                btn2.data('action', 'delete');
+                btn2.text('Supprimer');
+            }
+        }
+    });
 }

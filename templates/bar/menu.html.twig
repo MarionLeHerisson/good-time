@@ -5,13 +5,23 @@
     {% for item_category in products %}
         {% for item in item_category %}
             <li class="list-group-item">
+
                 <div class="float-md-left">
-                    <b id="item-name-{{ item.id }}">{{ item.name }}</b> <span id="item-price-{{ item.id }}">{{ item.price }}</span>
+                    <b id="item-name-{{ item.id }}">{{ item.name }}</b>&nbsp;
+                    <span id="item-price-{{ item.id }}">{{ item.price }}</span>
+                    <span id="item-original-price-{{ item.id }}" hidden="hidden">{{ item.price }}</span>
                 </div>
+
                 <div class="float-md-right">
-                    <button type="button" class="btn btn-success" id="btn-edit-{{ item.id }}">Modifier</button>
-                    <button type="button" class="btn btn-danger">Supprimer</button>
+
+                    <button type="button" class="btn btn-success js-btn-edit js-btn-action"
+                            data-item="{{ item.id }}" id="edit-{{ item.id }}" data-action="edit">Modifier</button>
+
+                    <button type="button" class="btn btn-danger js-btn-delete js-btn-action"
+                            data-item="{{ item.id }}" id="delete-{{ item.id }}" data-action="delete">Supprimer</button>
+
                     {% include('components/btn-modal-apply-discount.html.twig') with {'itemId': item.id } %}
+
                 </div>
             </li>
         {% endfor %}
