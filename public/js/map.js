@@ -45,7 +45,41 @@ function showAllBars() {
 
         for (let key in allBars) {
             let bar = allBars[key];
-            createMarker(parseFloat(bar.lat), parseFloat(bar.lon), bar.name + '<br>' + bar.address + '<br>' + bar.phone);
+            createMarker(parseFloat(bar.lat), parseFloat(bar.lon), '<strong>' + bar.name + '</strong><br>'
+                + bar.address + '<br>&#x1F37A;<strong>' + bar.cheaper_pint + '</strong><br>' + bar.phone);
         }
     });
 }
+
+function deleteMarkers() {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];
+}
+
+$('#priceRange').on('change mousemove', (e) => {
+    $('#priceValue').text($('#priceRange').val());
+});
+
+
+$('#priceRange').on('mouseout', (e) => {
+    deleteMarkers();
+
+    let data = ['hiImEmpty'];
+    let maxPrice = $('#priceRange').val();
+
+    myAjax('/map/ajax', 'getAllBars', data, (ret) => {
+        let allBars  = JSON.parse(ret);
+
+        for (let key in allBars) {
+            let bar = allBars[key];
+
+            if(parseFloat(bar.cheaper_pint) <= maxPrice) {
+                console.log(parseFloat(bar.cheaper_pint) + ' <= ' + maxPrice);
+                createMarker(parseFloat(bar.lat), parseFloat(bar.lon), '<strong>' + bar.name + '</strong><br>'
+                    + bar.address + '<br>&#x1F37A;<strong>' + bar.cheaper_pint + '</strong><br>' + bar.phone);
+            }
+        }
+    });
+});

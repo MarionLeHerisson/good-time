@@ -6,20 +6,8 @@
     <div id="barsMap">
 
     </div>
-
-    <pre>
-{
-    {% for key, bar in bars %}
-    "{{ key }}": {
-        "name": "{{ bar.name }}",
-        "phone": "{{ bar.phone }}",
-        "lat": "{{ bar.completeAddress.latitude }}",
-        "lon": "{{ bar.completeAddress.longitude }}",
-        "address": "{{ bar.completeAddress.num }} {{ bar.completeAddress.street }} {{ bar.completeAddress.postCode }} {{ bar.completeAddress.city }}"
-    }{% if bar != bars|last %},{% endif %}
-    {% endfor %}
-}
-    </pre>
+    <input id="priceRange" class="float-md-left" type="range" min="1" max="15" step="0.5" value="5">
+    <p id="priceValue" class="float-md-left"></p>
 {% endblock %}
 
 {% block javascripts %}
