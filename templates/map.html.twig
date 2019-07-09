@@ -1,0 +1,30 @@
+{% extends 'base/base.html.twig' %}
+
+{% block bodyClass %}class="bodyMap"{% endblock %}
+
+{% block body %}
+    <div id="barsMap">
+
+    </div>
+
+    <pre>
+{
+    {% for key, bar in bars %}
+    "{{ key }}": {
+        "name": "{{ bar.name }}",
+        "phone": "{{ bar.phone }}",
+        "lat": "{{ bar.completeAddress.latitude }}",
+        "lon": "{{ bar.completeAddress.longitude }}",
+        "address": "{{ bar.completeAddress.num }} {{ bar.completeAddress.street }} {{ bar.completeAddress.postCode }} {{ bar.completeAddress.city }}"
+    }{% if bar != bars|last %},{% endif %}
+    {% endfor %}
+}
+    </pre>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl44zcS2rJ1McDrcMO_ZzCjUR38Nd7pLY&callback=initMap"
+            async defer></script>
+{% endblock %}

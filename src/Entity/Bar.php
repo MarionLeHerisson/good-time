@@ -35,6 +35,8 @@ class Bar
      */
     private $addressId;
 
+    private $completeAddress;
+
     /**
      * @var int
      *
@@ -109,6 +111,18 @@ class Bar
     public function setAddressId(int $addressId): self
     {
         $this->addressId = $addressId;
+
+        return $this;
+    }
+
+    public function getCompleteAddress(): ?Address
+    {
+        return $this->completeAddress;
+    }
+
+    public function setCompleteAddress(Address $completeAddress): self
+    {
+        $this->completeAddress = $completeAddress;
 
         return $this;
     }
