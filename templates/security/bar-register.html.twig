@@ -31,3 +31,10 @@
         </div>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="js/autocomplete.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAAUzIL6u3SlXgwyFtg2iq6Qgd7Sg0ws7c&callback=initAutocomplete"
+            async defer></script>
+{% endblock %}

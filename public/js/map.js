@@ -78,7 +78,7 @@ $('#priceRange').on('mouseout', (e) => {
             if(parseFloat(bar.cheaper_pint) <= maxPrice) {
                 console.log(parseFloat(bar.cheaper_pint) + ' <= ' + maxPrice);
                 createMarker(parseFloat(bar.lat), parseFloat(bar.lon), '<strong>' + bar.name + '</strong><br>'
-                    + bar.address + '<br>&#x1F37A;<strong>' + bar.cheaper_pint + '</strong><br>' + bar.phone);
+                    + bar.address + '<br>&#x1F37A;<strong>' + bar.cheaper_pint + '&nbsp;€</strong><br>' + bar.phone);
             }
         }
     });

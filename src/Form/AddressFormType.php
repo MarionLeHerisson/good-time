@@ -13,40 +13,55 @@ class AddressFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Todo 2 : remove the damn comments :scream:
         $builder
             ->add('completeAddress', TextType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => [
+                    'class' => 'form-control',
+                    'id'    => 'autocomplete',
+                ],
                 'mapped' => false,
-//                'constraints' => [
-//                    new NotBlank([
-//                        'message' => 'Votre bar doit bien se trouver quelque part !'
-//                    ])
-//                ]
             ])
             ->add('num', TextType::class, [
-                'attr' => ['class' => 'form-control'],
-//                'disabled' => true
+                'attr' => [
+                    'class' => 'form-control',
+                    'id'    => 'street-number',
+                ],
+                'disabled' => true,
             ])
             ->add('street', TextType::class, [
-                'attr' => ['class' => 'form-control'],
-//                'disabled' => true
+                'attr' => [
+                    'class' => 'form-control',
+                    'id'    => 'route',
+                ],
+                'disabled' => true,
             ])
             ->add('postCode', TextType::class, [
-                'attr' => ['class' => 'form-control'],
-//                'disabled' => true
+                'attr' => [
+                    'class' => 'form-control',
+                    'id'    => 'postal_code',
+                ],
+                'disabled' => true,
             ])
             ->add('city', TextType::class, [
-                'attr' => ['class' => 'form-control'],
-//                'disabled' => true
+                'attr' => [
+                    'class' => 'form-control',
+                    'id'    => 'locality',
+                ],
+                'disabled' => true,
             ])
             ->add('latitude', TextType::class, [
-                'attr' => ['class' => 'form-control'],
-//                'disabled' => true
+                'attr' => [
+                    'class' => 'form-control',
+                    'id'    => 'latitude',
+                ],
+                'disabled' => true,
             ])
             ->add('longitude', TextType::class, [
-                'attr' => ['class' => 'form-control'],
-//                'disabled' => true
+                'attr' => [
+                    'class' => 'form-control',
+                    'id'    => 'longitude',
+                ],
+                'disabled' => true,
             ])
         ;
     }
