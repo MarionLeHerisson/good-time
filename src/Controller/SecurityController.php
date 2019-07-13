@@ -91,6 +91,9 @@ class SecurityController extends AbstractController
             if (true === $form_user['isBarOwner']->getData()) {
                 $response = $this->redirect('/inscription-bar');
             }
+            else {
+                $response = $this->redirect('/');
+            }
 
             return $response;
         }
@@ -148,6 +151,11 @@ class SecurityController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($address);
+            $em->flush();
+
+            $addressId = $address->getId();
+            $bar->setAddressId($addressId);
+
             $em->persist($bar);
             $em->persist($picture);
             $em->flush();

@@ -4,10 +4,10 @@ namespace App\Form;
 
 use App\Entity\Address;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AddressFormType extends AbstractType
 {
@@ -21,47 +21,41 @@ class AddressFormType extends AbstractType
                 ],
                 'mapped' => false,
             ])
-            ->add('num', TextType::class, [
+            ->add('num', HiddenType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'id'    => 'street-number',
                 ],
-                'disabled' => true,
             ])
-            ->add('street', TextType::class, [
+            ->add('street', HiddenType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'id'    => 'route',
                 ],
-                'disabled' => true,
             ])
-            ->add('postCode', TextType::class, [
+            ->add('postCode', HiddenType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'id'    => 'postal_code',
                 ],
-                'disabled' => true,
             ])
-            ->add('city', TextType::class, [
+            ->add('city', HiddenType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'id'    => 'locality',
                 ],
-                'disabled' => true,
             ])
-            ->add('latitude', TextType::class, [
+            ->add('latitude', HiddenType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'id'    => 'latitude',
                 ],
-                'disabled' => true,
             ])
-            ->add('longitude', TextType::class, [
+            ->add('longitude', HiddenType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'id'    => 'longitude',
                 ],
-                'disabled' => true,
             ])
         ;
     }
