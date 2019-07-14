@@ -5,9 +5,9 @@
                 {{ w.name }} : pour <b>{{ w.nb_persons }} personnes</b> le <b>{{ w.date|date("d/m/Y à h:i") }}</b>
                 <br><small>{{ w.phone }} - {{ w.email }}</small>
             </div>
-            <div class="float-md-right">
-                {% include 'components/btn-modal-reservation-accept.html.twig' %}
-                {% include 'components/btn-modal-reservation-deny.html.twig' %}
+            <div class="float-md-right" id="buttons-{{ w.id }}">
+                {% include 'components/btn-modal-reservation-accept.html.twig' with { 'id': w.id } %}
+                {% include 'components/btn-modal-reservation-deny.html.twig' with { 'id': w.id } %}
             </div>
         </li>
     {% endfor %}

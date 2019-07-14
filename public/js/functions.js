@@ -1,26 +1,8 @@
 $(document).ready(function () {
-    handleSchedule();
     handleMenu();
     handleMedias();
-});
-
-$("#exportSchedule").click(function () {
-
-    const barRegistration = $("#bar_registration_form_schedule");
-
-    if(barRegistration.length !== 0) {
-        barRegistration.val($("#schedule").jqs('export'));
-    }
-    else {
-        let data = $("#schedule").jqs('export');
-
-        myAjax('/bar/ajax', 'exportSchedule', data, (ret) => {
-            let successMessage = $("#successScheduleMessage");
-            successMessage.text(ret);
-            successMessage.removeAttr('hidden');
-        });
-    }
-
+    handleReservations();
+    handleSchedule();
 });
 
 /**
@@ -65,6 +47,25 @@ function handleSchedule() {
         periodTextColor: '#000',
         periodRemoveButton: 'Supprimer',
         periodDuplicateButton: 'Dupliquer',
+    });
+
+    $("#exportSchedule").click(function () {
+
+        const barRegistration = $("#bar_registration_form_schedule");
+
+        if(barRegistration.length !== 0) {
+            barRegistration.val($("#schedule").jqs('export'));
+        }
+        else {
+            let data = $("#schedule").jqs('export');
+
+            myAjax('/bar/ajax', 'exportSchedule', data, (ret) => {
+                let successMessage = $("#successScheduleMessage");
+                successMessage.text(ret);
+                successMessage.removeAttr('hidden');
+            });
+        }
+
     });
 }
 
@@ -127,17 +128,18 @@ function handleMenu() {
     // Enregistrer / Annuler
     $('.js-btn-action').on('click', (e) => {
 
-        let itemId = $(e.currentTarget).data('item');
-        let btn1 = $('#edit-' + itemId);
-        let btn2 = $('#delete-' + itemId);
+        let target = $(e.currentTarget);
+        let itemId = target.data('item');
+        let btn1  = $('#edit-' + itemId);
+        let btn2  = $('#delete-' + itemId);
 
         let itemPriceContainer = $('#item-price-' + itemId);
         let originalPrice = $('#item-original-price-' + itemId).text();
 
         // Modifier / Enregistrer
-        if ($(e.currentTarget).hasClass('js-btn-edit')) {
+        if (target.hasClass('js-btn-edit')) {
 
-            if($(e.currentTarget).data('action') === 'edit') {
+            if(target.data('action') === 'edit') {
 
                 itemPriceContainer.html('<input type="text" id="newItemPrice-' + itemId + '" placeholder="' + originalPrice + '">');
 
@@ -147,7 +149,7 @@ function handleMenu() {
                 btn2.data('action', 'cancel');
                 btn2.text('Annuler');
             }
-            else if($(e.currentTarget).data('action') === 'save') {
+            else if(target.data('action') === 'save') {
 
                 let newPrice = $('#newItemPrice-' + itemId).value;
                 let data = {
@@ -168,20 +170,20 @@ function handleMenu() {
         }
 
         // Supprimer / Annuler
-        if ($(e.currentTarget).hasClass('js-btn-delete')) {
+        if (target.hasClass('js-btn-delete')) {
 
-            if($(e.currentTarget).data('action') === 'delete') {
+            if(target.data('action') === 'delete') {
 
                 let data = {
                     item_id: itemId
                 };
 
                 myAjax('/bar/ajax', 'deleteItem', data, (ret) => {
-                    $(e.currentTarget).closest('li').attr('hidden', 'hidden');
+                    target.closest('li').attr('hidden', 'hidden');
                 });
 
             }
-            else if($(e.currentTarget).data('action') === 'cancel') {
+            else if(target.data('action') === 'cancel') {
 
                 itemPriceContainer.text(originalPrice);
 
@@ -205,6 +207,53 @@ function handleMedias() {
 
         myAjax('/bar/ajax', 'deletePicture', data, function (ret) {
             $('[data-id="'+imgId+'"]').closest('.col-md-12').attr('hidden', 'hidden');
+        });
+    });
+}
+
+function handleReservations() {
+
+    $('.btn-res-accept').on('click', function (e) {
+        let target = $(e.currentTarget)
+        let resaId = target.data('resa');
+        let data = { 'resaId': resaId };
+
+        myAjax('/bar/ajax', 'acceptReservation', data, function (ret) {
+
+            let btnGroup = $('#buttons-'+resaId);
+            btnGroup.find('.btn-res-accept').attr('hidden', 'hidden');
+            btnGroup.find('.btn-danger').removeAttr('hidden');
+
+            $('.list-reservations-accepted').append(target.closest('li'));
+
+            let nbAcceptedPlacement = $('#nbResAccepted');
+            let nbAccepted = parseInt(nbAcceptedPlacement.text());
+            nbAcceptedPlacement.text(nbAccepted + 1);
+
+            let otherNumberPlacement = $('.nav-badge.active').find('.badge');
+            otherNumberPlacement.text(parseInt(otherNumberPlacement.text()) - 1);
+        });
+    });
+
+    $('.btn-res-deny').on('click', function (e) {
+        let target = $(e.currentTarget)
+        let resaId = target.data('resa');
+        let data = { 'resaId': resaId };
+
+        myAjax('/bar/ajax', 'denyReservation', data, function (ret) {
+
+            let btnGroup = $('#buttons-'+resaId);
+            btnGroup.find('.btn-res-accept').removeAttr('hidden');
+            btnGroup.find('.btn-danger').attr('hidden', 'hidden');
+
+            $('.list-reservations-denied').append(target.closest('li'));
+
+            let nbDeniedPlacement = $('#nbResDenied');
+            let nbDenied = parseInt(nbDeniedPlacement.text());
+            nbDeniedPlacement.text(nbDenied + 1);
+
+            let otherNumberPlacement = $('.nav-badge.active').find('.badge');
+            otherNumberPlacement.text(parseInt(otherNumberPlacement.text()) - 1);
         });
     });
 }

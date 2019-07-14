@@ -1,5 +1,15 @@
+{% if id is not defined %}
+    {% set id = 1 %}
+{% endif %}
+{% if hiddenBtn is not defined %}
+    {% set hiddenBtn = 0 %}
+{% endif %}
+
 <button type="button" class="btn btn-danger"
-        data-toggle="modal" data-target="#modal-deny-reservation">Refuser</button>
+        data-toggle="modal" data-target="#modal-deny-reservation"
+        {% if hiddenBtn == 1 %}hidden="hidden"{% endif %}>
+    Refuser
+</button>
 
 {% block modalDenyReservation %}
     <!-- Modal -->
@@ -13,11 +23,13 @@
                     <h4 class="modal-title">Veuillez entrer le motif de votre refus :</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Some text in the modal.</p>
+                    <textarea id="whyOhWhy">
+                    </textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">J'ai changé d'avis</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Je refuse cette réservation</button>
+                    <button type="button" class="btn btn-danger btn-res-deny" data-dismiss="modal" data-resa="{{ id }}">
+                        Je refuse cette réservation</button>
                 </div>
             </div>
 

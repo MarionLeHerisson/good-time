@@ -2,23 +2,23 @@
     <div class="container-nav">
         <ul class="nav nav-bottom nav-fill nav-pills">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" role="tab" aria-selected="true"
+                <a class="nav-badge nav-link active" data-toggle="tab" role="tab" aria-selected="true"
                     id="nav-reservation-waiting-tab" aria-controls="nav-reservation-waiting" href="#nav-reservation-waiting">
-                    <span class="badge badge-warning badge-pill custom-badge">20</span>
+                    <span class="badge badge-warning badge-pill custom-badge" id="nbResWaiting">{{ reservations.waiting|length }}</span>
                     <i class="fas fa-user-circle"></i> <span class="d-none d-sm-inline-block d-md-inline-block">En attente</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" role="tab" aria-selected="false"
+                <a class="nav-badge nav-link" data-toggle="tab" role="tab" aria-selected="false"
                    id="nav-reservation-accepted-tab" aria-controls="nav-reservation-accepted" href="#nav-reservation-accepted">
-                    <span class="badge badge-success badge-pill custom-badge">20</span>
+                    <span class="badge badge-success badge-pill custom-badge" id="nbResAccepted">{{ reservations.accepted|length }}</span>
                     <i class="fas fa-user-circle"></i> <span class="d-none d-sm-inline-block d-md-inline-block">Acceptées</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" role="tab" aria-selected="false"
+                <a class="nav-badge nav-link" data-toggle="tab" role="tab" aria-selected="false"
                    id="nav-reservation-denied-tab" aria-controls="nav-reservation-denied" href="#nav-reservation-denied">
-                    <span class="badge badge-danger badge-pill custom-badge">20</span>
+                    <span class="badge badge-danger badge-pill custom-badge" id="nbResDenied">{{ reservations.denied|length }}</span>
                     <i class="fas fa-user-circle"></i> <span class="d-none d-sm-inline-block d-md-inline-block">Refusées</span>
                 </a>
             </li>

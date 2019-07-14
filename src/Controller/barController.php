@@ -11,7 +11,6 @@ namespace App\Controller;
 use App\Entity\Bar;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -73,6 +72,9 @@ class barController extends AbstractController
     private function handleAjaxRequest($em, $action, $parameter) {
 
         switch ($action) {
+            case 'acceptReservation' :
+                $this->acceptReservation($em, $parameter);
+                break;
             case 'applyDiscount' :
                 $this->applyDiscount($em, $parameter);
                 break;
@@ -84,6 +86,9 @@ class barController extends AbstractController
                 break;
             case 'deletePicture' :
                 $this->deletePicture($em, $parameter);
+                break;
+            case 'denyReservation' :
+                $this->denyReservation($em, $parameter);
                 break;
             case 'editItem' :
                 $this->editItem($em, $parameter);
@@ -97,6 +102,9 @@ class barController extends AbstractController
         }
     }
 
+    private function acceptReservation($em, $parameter) {
+        die('Réservation #' . $parameter['resaId'] . ' acceptée.');
+    }
     private function applyDiscount($em, $parameter) {
         die('Réduction appliquée : ' . $parameter['new_price'] . ' sur le produit ' . $parameter['item_id']);
     }
@@ -111,6 +119,10 @@ class barController extends AbstractController
 
     private function deletePicture($em, $parameter) {
         die('Image supprimée : ' . $parameter['id']);
+    }
+
+    private function denyReservation($em, $parameter) {
+        die('Réservation #' . $parameter['resaId'] . ' refusée.');
     }
 
     private function editItem($em, $parameter) {
@@ -139,17 +151,6 @@ class barController extends AbstractController
     // FIXTURES FUNCTIONS // TODO 1 : dynamic
     public function getMainPicture()
     {
-        // SELECT p.path
-        // FROM picture p
-        // LEFT JOIN bar_picture bp
-        // ON bp.picture_id = p.id
-        // WHERE bp.bar_id = :barId
-        // AND bp.is_main = 1;
-//        $query = $em
-//            ->createQuery('SELECT p.path FROM picture p LEFT JOIN bar_picture bp ON bp.picture_id = p.id WHERE bp.bar_id = :barId AND bp.is_main = 1;')
-//            ->setParameter('barId', $bar->getId())
-//        ;
-
         return 'evan-dvorkin-NCmog4xinew-unsplash.jpg';
     }
 
@@ -179,6 +180,7 @@ class barController extends AbstractController
         return [
             'waiting' => [
                 [
+                    'id' => '2',
                     'name' => 'John Doe',
                     'phone' => '0123456789',
                     'email' => 'john.doe@mail.fr',
@@ -186,6 +188,7 @@ class barController extends AbstractController
                     'date' => '1565632800'
                 ],
                 [
+                    'id' => '5',
                     'name' => 'Karen Doe',
                     'phone' => '0123456789',
                     'email' => 'karen.doe@mail.fr',
@@ -193,6 +196,7 @@ class barController extends AbstractController
                     'date' => '1565632800'
                 ],
                 [
+                    'id' => '7',
                     'name' => 'Lauren Doe',
                     'phone' => '0123456789',
                     'email' => 'lauren.doe@mail.fr',
@@ -202,6 +206,7 @@ class barController extends AbstractController
             ],
             'accepted' => [
                 [
+                    'id' => '3',
                     'name' => 'Morty Doe',
                     'phone' => '0123456789',
                     'email' => 'morty.doe@mail.fr',
@@ -209,6 +214,7 @@ class barController extends AbstractController
                     'date' => '1565632800'
                 ],
                 [
+                    'id' => '9',
                     'name' => 'Nathalia Doe',
                     'phone' => '0123456789',
                     'email' => 'nat.doe@mail.fr',
@@ -216,6 +222,7 @@ class barController extends AbstractController
                     'date' => '1565632800'
                 ],
                 [
+                    'id' => '22',
                     'name' => 'Oliver Doe',
                     'phone' => '0123456789',
                     'email' => 'oliver.doe@mail.fr',
@@ -225,6 +232,7 @@ class barController extends AbstractController
             ],
             'denied' => [
                 [
+                    'id' => '20',
                     'name' => 'Patrick Doe',
                     'phone' => '0123456789',
                     'email' => 'pat.doe@mail.fr',
@@ -232,6 +240,7 @@ class barController extends AbstractController
                     'date' => '1565632800'
                 ],
                 [
+                    'id' => '21',
                     'name' => 'Qi Doe',
                     'phone' => '0123456789',
                     'email' => 'qi.doe@mail.fr',
@@ -239,6 +248,7 @@ class barController extends AbstractController
                     'date' => '1565632800'
                 ],
                 [
+                    'id' => '11',
                     'name' => 'Rick Doe',
                     'phone' => '0123456789',
                     'email' => 'rick.doe@mail.fr',

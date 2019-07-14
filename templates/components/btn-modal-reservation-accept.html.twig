@@ -1,2 +1,13 @@
-<button type="button" class="btn btn-success"
-        data-toggle="modal" data-target="#modal-accept-reservation">Accepter</button>
+{% if id is not defined %}
+    {% set id = 1 %}
+{% endif %}
+{% if hiddenBtn is not defined %}
+    {% set hiddenBtn = 0 %}
+{% endif %}
+
+
+<button type="button" class="btn btn-success btn-res-accept"
+        data-toggle="modal" data-target="#modal-accept-reservation"  data-resa="{{ id }}"
+        {% if hiddenBtn == 1 %}hidden="hidden"{% endif %}>
+    Accepter
+</button>
