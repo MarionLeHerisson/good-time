@@ -1,4 +1,6 @@
-/* Main */
+/* =========================================
+                Main
+   ========================================= */
 p {
     font-family: 'Raleway', sans-serif;
 }
@@ -16,18 +18,51 @@ h1 {
     font-size: 8rem;
 }
 
+.pt-20 {
+    padding-top: 20px;
+}
+
 .pt-50 {
     padding-top: 50px;
 }
 
-/* Nav */
+.pb-50 {
+    padding-bottom: 50px;
+}
+
+.mt-25 {
+    margin-top: 25px;
+}
+
+@font-face {
+    font-family: RainbowBridge;
+    src: local("RainbowBridge"),
+    url('/fonts/RainbowBridge.ttf');
+}
+
+/* =========================================
+                Nav
+   ========================================= */
 .btn-outline-success {
     color: #eac67a;
     border-color: #eac67a;
 }
 
+.btn-primary, .btn-success {
+    background-color: #dda329;
+}
+
+.btn-primary.active,
+.btn-primary:active,
+.btn-success.active,
+.btn-success:active{
+    background-color: #dda329;
+    box-shadow: 0 0 0 .2rem #eac67a;
+}
+
 .btn-outline-success.focus,
-.btn-outline-success:focus {
+.btn-outline-success:focus{
+    background-color: #dda329;
     box-shadow: 0 0 0 .2rem #eac67a;
 }
 
@@ -53,8 +88,103 @@ h1 {
     background-color: #233237;
 }
 
-@font-face {
-    font-family: RainbowBridge;
-    src: local("RainbowBridge"),
-    url('/fonts/RainbowBridge.ttf');
+.dropdown-toggle::after {
+    display: none;
+}
+
+/* =========================================
+                Forms
+   ========================================= */
+/*.form-control {*/
+    /*margin-top: 10px;*/
+    /*width: 50%;*/
+/*}*/
+
+/*label, input {*/
+    /*display: block;*/
+    /*width: 50%;*/
+    /*float: left;*/
+/*}*/
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(234, 198, 122, 0.25);
+}
+
+.btn-subscribe {
+    display: block;
+    float: left;
+}
+
+/* =========================================
+                Schedule
+   ========================================= */
+.schedule-closed {
+    background-color: white;
+}
+
+.schedule-open {
+    background-color: grey;
+}
+
+.schedule-happy {
+    background-color: #eac67a;
+}
+
+
+/* =========================================
+                Map
+   ========================================= */
+#barsMap {
+    height: 800px;
+}
+
+.bodyMap > .container {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* =========================================
+                Gallery
+   ========================================= */
+.mask:hover {
+    opacity: 1;
+}
+.mask {
+    opacity: 0;
+    transition: all .4s ease-in-out;
+}
+.mask {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+}
+
+.img-fluid {
+    padding-bottom: 30px;
+}
+.gal {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+}
+.gal img{ width: 100%; padding: 7px 0;}
+@media (max-width: 500px) {
+    .gal {
+        -webkit-column-count: 1; /* Chrome, Safari, Opera */
+        -moz-column-count: 1; /* Firefox */
+        column-count: 1;
+    }
+}
+.media-delete {
+    cursor: pointer;
+    width: min-content;
+    margin-top: 5px;
 }

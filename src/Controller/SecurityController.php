@@ -2,7 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Address;
+use App\Entity\Bar;
+use App\Entity\BarPicture;
+use App\Entity\Picture;
 use App\Entity\User;
+use App\Form\AddressFormType;
+use App\Form\BarRegistrationFormType;
+use App\Form\PictureFormType;
 use App\Form\UserRegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,31 +48,139 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/inscription", name="app_register")
+     * TODO 1 : si déjà connecté, rediriger vers /inscription-bar
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
+    public function userRegister(Request $request, UserPasswordEncoderInterface $passwordEncoder,
+                             GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
     {
-        $form = $this->createForm(UserRegistrationFormType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($this->getUser()) {
+            return $this->redirect('/inscription-bar');
+        }
+
+        $form_user = $this->createForm(UserRegistrationFormType::class);
+        $form_user->handleRequest($request);
+
+        if ($form_user->isSubmitted() && $form_user->isValid()) {
+
             /** @var User $user */
-            $user = $form->getData();
+            $user = $form_user->getData();
+
             $user->setPassword($passwordEncoder->encodePassword(
                 $user,
-                $user->getPassword()
+                $form_user['plainPassword']->getData()
             ));
+
+            if (true === $form_user['isBarOwner']->getData()) {
+                $user->setRoles([
+                    'ROLE_BAR'
+                ]);
+            } else {
+                $user->setRoles([
+                    'ROLE_USER'
+                ]);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            return $guardHandler->authenticateUserAndHandleSuccess(
+
+            $response = $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
                 $formAuthenticator,
                 'main'
             );
+
+            if (true === $form_user['isBarOwner']->getData()) {
+                $response = $this->redirect('/inscription-bar');
+            }
+            else {
+                $response = $this->redirect('/');
+            }
+
+            return $response;
         }
+
         return $this->render('security/register.html.twig', [
-            'registrationForm' => $form->createView(),
+            'userRegistrationForm' => $form_user->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/inscription-bar", name="app_bar_register")
+     */
+    public function barRegister(Request $request) {
+
+        $ownerId = $this->getUser();
+        if(!$ownerId) {
+            return $this->redirect('/');
+        }
+
+        $form_address = $this->createForm(AddressFormType::class);
+        $form_address->handleRequest($request);
+
+        $form_bar = $this->createForm(BarRegistrationFormType::class);
+        $form_bar->handleRequest($request);
+
+        $form_picture = $this->createForm(PictureFormType::class);
+        $form_picture->handleRequest($request);
+
+        if ($form_bar->isSubmitted() && $form_bar->isValid()
+            && $form_address->isSubmitted() && $form_address->isValid()) {
+
+            /** @var Address $address */
+            $address = $form_address->getData();
+
+            /** @var Bar $bar */
+            $bar = $form_bar->getData();
+
+            /** @var BarPicture $barPicture */
+            $barPicture = new BarPicture();
+
+            /** @var Picture $picture */
+            $picture = $form_picture->getData();
+
+            // TODO 1 : handle (existing address && existing name)
+            // TODO 1 : handle Google Map's autocomplete
+
+            $path             = $picture->getPath();
+            $allUploadedFiles = $request->files->all();
+            $uploadedFile     = $allUploadedFiles['picture_form']['path'];
+            $extension        = $uploadedFile->getClientOriginalExtension();    // TODO 1 : verify extension :grimace:
+            $fileName         = md5(uniqid()).'.'.$extension;
+            $destination      = 'media/bar_pictures/'.$fileName;    // TODO 2 : Who let the conf out ? Who who who who
+
+            move_uploaded_file($path, $destination);
+            $picture->setPath($fileName);
+
+            $bar->setOwnerId($ownerId);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($address);
+            $em->flush();
+
+            $addressId = $address->getId();
+            $bar->setAddressId($addressId);
+
+            $em->persist($bar);
+            $em->persist($picture);
+            $em->flush();
+
+            $barPicture->setBarId($bar->getId());
+            $barPicture->setPictureId($picture->getId());
+            $barPicture->setIsMain(1);
+
+            $em->persist($barPicture);
+            $em->flush();
+
+            return $this->redirect('/bar');
+        }
+
+        return $this->render('security/bar-register.html.twig', [
+            'barRegistrationForm' => $form_bar->createView(),
+            'addressForm'         => $form_address->createView(),
+            'pictureForm'         => $form_picture->createView(),
         ]);
     }
 }

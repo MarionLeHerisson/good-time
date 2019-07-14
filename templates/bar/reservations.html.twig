@@ -1,0 +1,44 @@
+<div class="bottom bg-light sticky-top shadow-sm">
+    <div class="container-nav">
+        <ul class="nav nav-bottom nav-fill nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" role="tab" aria-selected="true"
+                    id="nav-reservation-waiting-tab" aria-controls="nav-reservation-waiting" href="#nav-reservation-waiting">
+                    <span class="badge badge-warning badge-pill custom-badge">20</span>
+                    <i class="fas fa-user-circle"></i> <span class="d-none d-sm-inline-block d-md-inline-block">En attente</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" role="tab" aria-selected="false"
+                   id="nav-reservation-accepted-tab" aria-controls="nav-reservation-accepted" href="#nav-reservation-accepted">
+                    <span class="badge badge-success badge-pill custom-badge">20</span>
+                    <i class="fas fa-user-circle"></i> <span class="d-none d-sm-inline-block d-md-inline-block">Acceptées</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" role="tab" aria-selected="false"
+                   id="nav-reservation-denied-tab" aria-controls="nav-reservation-denied" href="#nav-reservation-denied">
+                    <span class="badge badge-danger badge-pill custom-badge">20</span>
+                    <i class="fas fa-user-circle"></i> <span class="d-none d-sm-inline-block d-md-inline-block">Refusées</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+    <div class="tab-pane fade show active nav-link" role="tabpanel"
+         id="nav-reservation-waiting" aria-labelledby="nav-reservation-waiting-tab">
+        {% include 'bar/reservations-waiting.html.twig' %}
+    </div>
+    <div class="tab-pane fade show nav-link" role="tabpanel"
+         id="nav-reservation-accepted" aria-labelledby="nav-reservation-accepted-tab">
+        {% include 'bar/reservations-acceptedd.html.twig' %}
+    </div>
+    <div class="tab-pane fade show nav-link" role="tabpanel"
+         id="nav-reservation-denied" aria-labelledby="nav-reservation-denied-tab">
+        {% include 'bar/reservations-denied.html.twig' %}
+    </div>
+</div>
+
+{% block modalDenyReservation %}{% endblock %}

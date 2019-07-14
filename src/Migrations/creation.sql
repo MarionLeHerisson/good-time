@@ -28,6 +28,7 @@ CREATE TABLE item (
 CREATE TABLE menu (
   id INT NOT NULL AUTO_INCREMENT,
   bar_id INT NOT NULL,
+  menu_section VARCHAR(50), -- En tête dans le menu : "boissons chaudes", "bières", etc
 
   PRIMARY KEY (id),
   FOREIGN KEY (bar_id) REFERENCES bar(id)
@@ -38,6 +39,7 @@ CREATE TABLE menu_item (
    menu_id INT NOT NULL,
    item_id INT NOT NULL,
    price FLOAT NOT NULL,
+   hh_price FLOAT DEFAULT NULL,
 
    is_deleted SMALLINT DEFAULT 0,
 
@@ -92,7 +94,7 @@ CREATE TABLE `user` (
   FOREIGN KEY (picture) REFERENCES picture(id),
   FOREIGN KEY(favorite_item) REFERENCES item(id)
 );
--- Mitzva, Raccuda, Omètre, Atin, Atineur, Beque, Bichette, Bapapa, Biturique, Boteur, Bouillage, Illa, Issement, Jot, Iton
+-- Mitzva, Raccuda, Omètre, Atin, Atineur, Beque, Bichette, Bapapa, Biturique, Boteur, Bouillage, Illa, Issement, Jot, Iton, Akafrites
 CREATE TABLE bar (
   id INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
@@ -115,6 +117,7 @@ CREATE TABLE bar_picture (
   id INT NOT NULL AUTO_INCREMENT,
   bar_id INT NOT NULL,
   picture_id INT NOT NULL,
+  is_main INT NOT NULL DEFAULT 0,
 
   is_deleted INT DEFAULT 0,
 
@@ -201,7 +204,7 @@ CREATE TABLE good_time (
   FOREIGN KEY (deleted_by) REFERENCES user(id)
 );
 
--- TODO : Message si transport favori = voiture && is_sam = 0
+-- TODO 2 : Message si transport favori = voiture && is_sam = 0
 -- Signaler Sam au barman
 CREATE TABLE user_good_time (
   id INT NOT NULL AUTO_INCREMENT,
@@ -270,4 +273,7 @@ CREATE TABLE favorite_bar (
   PRIMARY KEY (id),
   FOREIGN KEY (bar_id) REFERENCES bar(id),
   FOREIGN KEY (user_id) REFERENCES user(id)
-)
+);
+
+-- TEMPORARY SOLUTION ?
+ALTER TABLE `bar` ADD `schedule` JSON NULL DEFAULT NULL AFTER `type`;

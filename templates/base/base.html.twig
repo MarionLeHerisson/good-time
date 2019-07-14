@@ -3,10 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{% block title %}Good Time - Vive Nils 1er{% endblock %}</title>
-        <meta name="description" content="De la maison Lapotre, Roi des Andals et des Premiers Hommes, Roi légitime des
+        <title>{% block title %}Good Time{% endblock %}</title>
+        <meta name="description" content="Vive Nils 1er ! De la maison Lapotre, Roi des Andals et des Premiers Hommes, Roi légitime des
         Sept Couronnes et Protecteur du Royaume, Roi de Meereen, l'Imbrûlé, Briseur de Chaînes, Khaleesi et Mère des
         Dragons.">
+        <link rel="icon" type="image/png" href="/media/logo-small.png"/>
         {%- block stylesheets -%}
             {# Bootstrap's stuff #}
             <link rel="stylesheet" href="/css/bootstrap.css">
@@ -18,6 +19,12 @@
                   href="https://fonts.googleapis.com/css?family=Raleway">
             <link rel="stylesheet"
                   href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:li">
+            {# Google icons #}
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+                  rel="stylesheet">
+            {# Schedule jQuery Plugin #}
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+            <link rel="stylesheet" href="/css/jquery.schedule.css">
             {# Custom #}
             <link rel="stylesheet" href="/css/styles.css">
         {%- endblock -%}
@@ -32,11 +39,14 @@
 
         {% include('/base/footer.html.twig') %}
 
-        {% block javascripts %}
-             {#Bootstrap's stuff #}
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                    crossorigin="anonymous"></script>
+        {%- block javascripts -%}
+            {# Schedule jQuery Plugin #}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+            <script src="/js/jquery.schedule.js"></script>
+            <script src="/js/functions.js"></script>
+
+            {# Bootstrap's stuff #}
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
                     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
                     crossorigin="anonymous"></script>

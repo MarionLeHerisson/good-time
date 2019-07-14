@@ -35,6 +35,8 @@ class Bar
      */
     private $addressId;
 
+    private $completeAddress;
+
     /**
      * @var int
      *
@@ -57,11 +59,18 @@ class Bar
     private $type;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="schedule", type="json", nullable=true)
+     */
+    private $schedule;
+
+    /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $createdAt = 'CURRENT_TIMESTAMP';
+    private $createdAt;
 
     /**
      * @var int|null
@@ -106,6 +115,18 @@ class Bar
         return $this;
     }
 
+    public function getCompleteAddress(): ?Address
+    {
+        return $this->completeAddress;
+    }
+
+    public function setCompleteAddress(Address $completeAddress): self
+    {
+        $this->completeAddress = $completeAddress;
+
+        return $this;
+    }
+
     public function getOwnerId(): ?int
     {
         return $this->ownerId;
@@ -138,6 +159,18 @@ class Bar
     public function setType(?int $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getSchedule(): ?string
+    {
+        return $this->schedule;
+    }
+
+    public function setSchedule(?string $schedule): self
+    {
+        $this->schedule = $schedule;
 
         return $this;
     }
@@ -177,6 +210,5 @@ class Bar
 
         return $this;
     }
-
 
 }

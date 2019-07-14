@@ -1,0 +1,38 @@
+{% include 'components/btn-modal-add-item.html.twig' %}
+{% include('components/btn-modal-create-discount.html.twig') %}
+
+<ul class="list-group">
+    {% for item_category in products %}
+        {% for item in item_category %}
+            <li class="list-group-item">
+
+                <div class="float-md-left">
+                    <b id="item-name-{{ item.id }}">{{ item.name }}</b>&nbsp;
+                    {% if item.discount is empty %}
+                        <span id="item-price-{{ item.id }}">{{ item.price }}</span>
+                    {% else %}
+                        <strike><span id="item-price-{{ item.id }}">{{ item.price }}</span></strike>
+                        <span id="item-discount-{{ item.id }}">{{ item.discount }}</span>
+                    {% endif %}
+                    <span id="item-original-price-{{ item.id }}" hidden="hidden">{{ item.price }}</span>
+                </div>
+
+                <div class="float-md-right">
+
+                    <button type="button" class="btn btn-success js-btn-edit js-btn-action"
+                            data-item="{{ item.id }}" id="edit-{{ item.id }}" data-action="edit">Modifier</button>
+
+                    <button type="button" class="btn btn-danger js-btn-delete js-btn-action"
+                            data-item="{{ item.id }}" id="delete-{{ item.id }}" data-action="delete">Supprimer</button>
+
+                    {% include('components/btn-modal-apply-discount.html.twig') with {'itemId': item.id } %}
+
+                </div>
+            </li>
+        {% endfor %}
+    {% endfor %}
+</ul>
+
+{% block modalAddItem %}{% endblock %}
+{% block modalCreateDiscount %}{% endblock %}
+{% block modalApplyDiscount %}{% endblock %}

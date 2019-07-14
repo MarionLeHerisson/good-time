@@ -1,0 +1,40 @@
+{% extends 'base/base.html.twig' %}
+
+{% block title %}Register!{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+
+            {% if app.user %}
+                <h1 class="pt-50 pb-50">Inscription</h1>
+                <h2>Quelques informations sur votre établissement</h2>
+                {{ form_start(barRegistrationForm, {'attr': {'enctype': 'multipart/form-data'}}) }} {# TODO 2 : fix this #}
+
+                {{ form_widget(barRegistrationForm) }}
+                {{ form_widget(addressForm) }}
+                {{ form_widget(pictureForm) }}
+                {# TODO 1 : Add correct labels #}
+
+                {% include 'components/table-schedule.html.twig' %}
+
+                <div class="col-md-12 text-center btn-subscribe">
+                    <button class="btn btn-lg btn-primary mt-25" type="submit">
+                        Enregistrer cet établissement !
+                    </button>
+                </div>
+                {{ form_end(barRegistrationForm) }}
+            {% else %}
+                <h1 class="pt-50 pb-50"><a href="/login">Connectez-vous</a> ou <a href="/inscription">inscrivez-vous</a> afin d'inscrire
+                    votre établissement.</h1>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="js/autocomplete.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAAUzIL6u3SlXgwyFtg2iq6Qgd7Sg0ws7c&callback=initAutocomplete"
+            async defer></script>
+{% endblock %}

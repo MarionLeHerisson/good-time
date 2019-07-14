@@ -3,13 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  *
  * @ORM\Table(name="user", indexes={@ORM\Index(name="picture", columns={"picture"}), @ORM\Index(name="address_id", columns={"address_id"}), @ORM\Index(name="favorite_item", columns={"favorite_item"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="Vous possédez déjà un compte."
+ * )
  */
 class User implements UserInterface
 {
@@ -106,6 +111,9 @@ class User implements UserInterface
      */
     private $isDeleted = '0';
 
+    /**
+     * @ORM\Column(type="json")
+     */
     private $roles = [];
 
     /**

@@ -1,0 +1,18 @@
+{% extends 'base/base.html.twig' %}
+
+{% block bodyClass %}class="bodyMap"{% endblock %}
+
+{% block body %}
+    <div id="barsMap">
+
+    </div>
+    <input id="priceRange" class="float-md-left" type="range" min="1" max="15" step="0.5" value="5">
+    <p id="priceValue" class="float-md-left"></p>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAAUzIL6u3SlXgwyFtg2iq6Qgd7Sg0ws7c&callback=initMap"
+            async defer></script>
+{% endblock %}

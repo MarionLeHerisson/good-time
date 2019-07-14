@@ -36,6 +36,13 @@ class BarPicture
     private $pictureId;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="is_main", type="integer", nullable=false)
+     */
+    private $isMain = 0;
+
+    /**
      * @var int|null
      *
      * @ORM\Column(name="is_deleted", type="integer", nullable=true)
@@ -71,6 +78,18 @@ class BarPicture
         return $this;
     }
 
+    public function getIsMain(): ?int
+    {
+        return $this->isMain;
+    }
+
+    public function setIsMain(int $isMain): self
+    {
+        $this->isMain = $isMain;
+
+        return $this;
+    }
+
     public function getIsDeleted(): ?int
     {
         return $this->isDeleted;
@@ -82,6 +101,5 @@ class BarPicture
 
         return $this;
     }
-
 
 }
