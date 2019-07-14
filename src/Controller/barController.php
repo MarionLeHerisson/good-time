@@ -66,7 +66,7 @@ class barController extends AbstractController
             $this->handleAjaxRequest($em, $data['action'], $data['parameter']);
         }
         else {
-            return new JsonResponse('Une erreur est survenue');
+            die('Une erreur est survenue');
         }
     }
 
@@ -79,11 +79,14 @@ class barController extends AbstractController
             case 'createDiscount' :
                 $this->createDiscount($em, $parameter);
                 break;
-            case 'editItem' :
-                $this->editItem($em, $parameter);
-                break;
             case 'deleteItem' :
                 $this->deleteItem($em, $parameter);
+                break;
+            case 'deletePicture' :
+                $this->deletePicture($em, $parameter);
+                break;
+            case 'editItem' :
+                $this->editItem($em, $parameter);
                 break;
             case 'exportSchedule' :
                 $this->exportSchedule($em, $parameter);
@@ -104,6 +107,10 @@ class barController extends AbstractController
 
     private function deleteItem($em, $parameter) {
         die('Element supprimé : ' . $parameter['item_id']);
+    }
+
+    private function deletePicture($em, $parameter) {
+        die('Image supprimée : ' . $parameter['id']);
     }
 
     private function editItem($em, $parameter) {

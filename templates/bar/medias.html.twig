@@ -7,7 +7,6 @@
         <img src="media/bar_pictures/{{ mainPicture }}" width="100%">
     </div>
 
-    {# TODO : clic sur la croix suppr l'image #}
     {# TODO : add new media #}
     {# TODO : add/change main media #}
 </div>
@@ -21,7 +20,7 @@
             <div class="view overlay">
                 <img src="media/bar_pictures/{{ picture }}" class="img-fluid " alt="smaple image">
                 <div class="mask flex-center rgba-red-slight">
-                    <p class="white-text media-delete" id="media-delete-{{ id }}">&#x274C;</p>
+                    <p class="white-text media-delete" data-id="{{ id }}">&#x274C;</p>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 $(document).ready(function () {
     handleSchedule();
     handleMenu();
+    handleMedias();
 });
 
 $("#exportSchedule").click(function () {
@@ -191,5 +192,19 @@ function handleMenu() {
                 btn2.text('Supprimer');
             }
         }
+    });
+}
+
+function handleMedias() {
+    $('.media-delete').on('click', function (e) {
+
+        let imgId = $(e.currentTarget).data('id');
+        let data  = {
+            id: imgId
+        };
+
+        myAjax('/bar/ajax', 'deletePicture', data, function (ret) {
+            $('[data-id="'+imgId+'"]').closest('.col-md-12').attr('hidden', 'hidden');
+        });
     });
 }
