@@ -1,4 +1,29 @@
 <h2>Vos jolis médias</h2>
 
-<h3>Photo principale</h3>
-<img src="media/bar_pictures/{{ mainPicture }}">
+<div class="col-md-12">
+
+    <h3>Photo principale</h3>
+    <div class="col-md-4">
+        <img src="media/bar_pictures/{{ mainPicture }}" width="100%">
+    </div>
+
+    {# TODO : clic sur la croix suppr l'image #}
+    {# TODO : add new media #}
+    {# TODO : add/change main media #}
+</div>
+
+<hr>
+
+<h3>Toutes les images de votre bar</h3>
+<div class="text-center text-lg-left gal">
+    {% for id, picture in allPictures %}
+        <div class="col-md-12">
+            <div class="view overlay">
+                <img src="media/bar_pictures/{{ picture }}" class="img-fluid " alt="smaple image">
+                <div class="mask flex-center rgba-red-slight">
+                    <p class="white-text media-delete" id="media-delete-{{ id }}">&#x274C;</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

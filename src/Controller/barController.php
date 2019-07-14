@@ -37,19 +37,21 @@ class barController extends AbstractController
             return $this->render('/bar/not-registered-yet.html.twig');
         }
 
-        $reservations = $this->getReservations();
-        $mainPicture = $this->getMainPicture();
-        $products = $this->getProducts();
+        $reservations  = $this->getReservations();
+        $mainPicture   = $this->getMainPicture();
+        $allPictures   = $this->getAllPictures();
+        $products      = $this->getProducts();
         $allCategories = $this->getAllCategories();
 
         return $this->render('bar.html.twig', [
-            'bar' => $bar,
-            'hasNewReservations' => "true", // TODO 1
+            'bar'                  => $bar,
+            'hasNewReservations'   => "true", // TODO 1
             'isReservationsActive' => " active", // TODO 1
-            'reservations' => $reservations,
-            'mainPicture' => $mainPicture,
-            'products' => $products,
-            'allCategories' => $allCategories,
+            'reservations'         => $reservations,
+            'mainPicture'          => $mainPicture,
+            'allPictures'          => $allPictures,
+            'products'             => $products,
+            'allCategories'        => $allCategories,
         ]);
     }
 
@@ -141,7 +143,29 @@ class barController extends AbstractController
 //            ->setParameter('barId', $bar->getId())
 //        ;
 
-        return '03821961a61c7747c73284f01d260323.jpg';
+        return 'evan-dvorkin-NCmog4xinew-unsplash.jpg';
+    }
+
+    public function getAllPictures()
+    {
+        return [
+            '3'  => 'amy-parkes-krCG8QgMNrk-unsplash.jpg',
+            '8'  => 'dan-gold-W9WN_cIR9JM-unsplash.jpg',
+            '13' => 'edward-franklin-Nb_Q-M3Cdzg-unsplash.jpg',
+            '22' => 'elevate-7omeJVzcgTE-unsplash.jpg',
+            '56' => 'elevate-8xAaevlbQLM-unsplash.jpg',
+            '57' => 'elevate-iqHHaTNF3BI-unsplash.jpg',
+            '58' => 'elevate-TDckk62Ag5g-unsplash.jpg',
+            '71' => 'giovanna-gomes-_8KV86shhPo-unsplash.jpg',
+            '76' => 'gonzalo-remy-JCIJnIXv7SE-unsplash.jpg',
+            '81' => 'juniperphoton-9i2YH9vyfWQ-unsplash.jpg',
+            '83' => 'mary-rebecca-elliott--V-ENAd192g-unsplash.jpg',
+            '88' => 'nahuel-hawkes-8gBBHX_SqMo-unsplash.jpg',
+            '89' => 'quentin-dr-gvm_Kmm3-9o-unsplash.jpg',
+            '90' => 'robert-mathews-aS7puomg6Oc-unsplash.jpg',
+            '98' => 'tatiana-rodriguez-D_Rfjj3XV8M-unsplash.jpg',
+            '99' => 'thomas-picauly-KztCdfHjvKQ-unsplash.jpg',
+        ];
     }
 
     public function getReservations() {

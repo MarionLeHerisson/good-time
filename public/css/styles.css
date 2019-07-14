@@ -143,3 +143,48 @@ h1 {
     padding: 0;
     margin: 0;
 }
+
+
+/* =========================================
+                Gallery
+   ========================================= */
+.mask:hover {
+    opacity: 1;
+}
+.mask {
+    opacity: 0;
+    transition: all .4s ease-in-out;
+}
+.mask {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+}
+
+.img-fluid {
+    padding-bottom: 30px;
+}
+.gal {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+}
+.gal img{ width: 100%; padding: 7px 0;}
+@media (max-width: 500px) {
+    .gal {
+        -webkit-column-count: 1; /* Chrome, Safari, Opera */
+        -moz-column-count: 1; /* Firefox */
+        column-count: 1;
+    }
+}
+.media-delete {
+    cursor: pointer;
+    width: min-content;
+    margin-top: 5px;
+}

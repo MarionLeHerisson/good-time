@@ -54,6 +54,10 @@ class SecurityController extends AbstractController
     public function userRegister(Request $request, UserPasswordEncoderInterface $passwordEncoder,
                              GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
     {
+        if($this->getUser()) {
+            return $this->redirect('/inscription-bar');
+        }
+
         $form_user = $this->createForm(UserRegistrationFormType::class);
         $form_user->handleRequest($request);
 
@@ -105,9 +109,13 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/inscription-bar", name="app_bar_register")
-     * TODO 1 : page inaccessible if not connected
      */
     public function barRegister(Request $request) {
+
+        $ownerId = $this->getUser();
+        if(!$ownerId) {
+            return $this->redirect('/');
+        }
 
         $form_address = $this->createForm(AddressFormType::class);
         $form_address->handleRequest($request);
@@ -146,7 +154,6 @@ class SecurityController extends AbstractController
             move_uploaded_file($path, $destination);
             $picture->setPath($fileName);
 
-            $ownerId = $this->getUser()->getId();
             $bar->setOwnerId($ownerId);
 
             $em = $this->getDoctrine()->getManager();
