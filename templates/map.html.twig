@@ -1,3 +1,5 @@
+{% set value = 5 %}
+
 {% extends 'base/base.html.twig' %}
 
 {% block bodyClass %}class="bodyMap"{% endblock %}
@@ -6,8 +8,12 @@
     <div id="barsMap">
 
     </div>
-    <input id="priceRange" class="float-md-left" type="range" min="1" max="15" step="0.5" value="5">
-    <p id="priceValue" class="float-md-left"></p>
+
+    <div id="pint-price-selector">
+        <p class="float-md-left text-white mr-3">Mon budget pour une pinte : </p>
+        <input id="priceRange" class="float-md-left" type="range" min="1" max="15" step="0.5" value="{{ value }}">
+        <p class="float-md-left text-white ml-3"><span id="priceValue">{{ value }}</span> €</p>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
