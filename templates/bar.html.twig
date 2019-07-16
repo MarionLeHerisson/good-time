@@ -1,5 +1,10 @@
 {% extends 'base/base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="/css/zabuto_calendar.css">
+{% endblock %}
+
 {% block title %}Votre profil{% endblock %}
 
 {% block body %}
@@ -40,7 +45,7 @@
                 </div>
                 <div class="tab-pane fade show" role="tabpanel"
                      id="nav-events" aria-labelledby="nav-events-tab">
-                    // Contenu événements
+                    {% include 'bar/events.html.twig' %}
                 </div>
                 <div class="tab-pane fade show" role="tabpanel"
                      id="nav-menu" aria-labelledby="nav-menu-tab">
@@ -58,4 +63,9 @@
         </div> <!-- col-md-12 -->
 
     </div> <!-- row -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/js/zabuto_calendar.js"></script>
 {% endblock %}

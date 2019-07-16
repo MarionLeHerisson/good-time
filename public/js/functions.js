@@ -3,6 +3,7 @@ $(document).ready(function () {
     handleMedias();
     handleReservations();
     handleSchedule();
+    handleEvents();
 });
 
 /**
@@ -151,14 +152,16 @@ function handleMenu() {
             }
             else if(target.data('action') === 'save') {
 
-                let newPrice = $('#newItemPrice-' + itemId).value;
+                let newPrice = $('#newItemPrice-' + itemId).val();
                 let data = {
                     item_id: itemId,
                     new_price: newPrice
                 };
                 myAjax('/bar/ajax', 'editItem', data, (ret) => {
 
-                    itemPriceContainer.text(newPrice);
+                    let funcRet = JSON.parse(ret);
+                    itemPriceContainer.html('');
+                    itemPriceContainer.text(funcRet.new_price + ' €');
 
                     btn1.data('action', 'edit');
                     btn1.text('Modifier');
@@ -256,4 +259,29 @@ function handleReservations() {
             otherNumberPlacement.text(parseInt(otherNumberPlacement.text()) - 1);
         });
     });
+}
+
+function handleEvents() {
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let settings = {
+        language: false,
+        year: year,
+        month: month,
+        show_previous: true,
+        show_next: true,
+        cell_border: false,
+        today: false,
+        show_days: true,
+        weekstartson: 1,
+        nav_icon: false, // object: prev: string, next: string
+        data: false,
+        ajax: false, // object: url: string, modal: boolean,
+        legend: false, // object array, [{type: string, label: string, classname: string}]
+        action: false, // function
+        action_nav: false // function
+    };
+
+    $("#demo").zabuto_calendar(settings);
 }

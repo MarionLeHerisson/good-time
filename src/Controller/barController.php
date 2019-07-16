@@ -126,7 +126,7 @@ class barController extends AbstractController
     }
 
     private function editItem($em, $parameter) {
-        die('Nouveau prix enregistré' . print_r($parameter));
+        die(json_encode($parameter));
     }
 
     private function exportSchedule($em, $parameter) {
