@@ -1,0 +1,60 @@
+<button id="addeventBtn" type="button" data-toggle="modal" data-target="#modal-add-event" hidden="hidden"></button>
+
+{% block modalAddEvent %}
+    <!-- Modal -->
+    <div id="modal-add-event" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Ajouter un évènement :</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="float-md-left col-md-12">
+                        <label for="newEventName">Nom :</label>
+                    </div>
+                    <div class="float-md-left col-md-10">
+                        <input type="text" class="form-control" id="newEventName">
+                    </div>
+
+                    <div class="float-md-left col-md-12">
+                        <label for="newEventDesc">Description : <small>(facultatif)</small></label>
+                    </div>
+                    <div class="float-md-left col-md-10">
+                        <input type="text" class="form-control" id="newEventDesc">
+                    </div>
+
+                    <div class="float-md-left col-md-12">
+                        <label for="newEventTime">Heure :</label>
+                    </div>
+                    <div class="float-md-left col-md-3">
+                        <select class="form-control" id="newEventHour">
+                            {% for hh in 00..23 %}
+                                <option value="{{ hh }}">{{ hh }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="float-md-left col-md-1">
+                        <p>:</p>
+                    </div>
+                    <div class="float-md-left col-md-3">
+                        <select class="form-control" id="newEventMinutes">
+                            {% for mm in 00..59 %}
+                                <option value="{{ mm }}">{{ mm }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" id="createNewEvent">Let's Rock</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

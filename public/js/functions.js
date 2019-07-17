@@ -266,22 +266,33 @@ function handleEvents() {
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
     let settings = {
-        language: false,
+        language: 'fr',
         year: year,
         month: month,
         show_previous: true,
         show_next: true,
-        cell_border: false,
-        today: false,
+        cell_border: true,
+        today: true,
         show_days: true,
         weekstartson: 1,
-        nav_icon: false, // object: prev: string, next: string
-        data: false,
+        nav_icon: {
+            prev: '<',
+            next: '>'
+        }, // object: prev: string, next: string
+        data: null,
+//            [
+//            {"date":"2019-07-01","badge":false,"title":"Example 1"},
+//            {"date":"2019-07-02","badge":true,"title":"Example 2"}
+//        ],
         ajax: false, // object: url: string, modal: boolean,
         legend: false, // object array, [{type: string, label: string, classname: string}]
-        action: false, // function
+        action: (e) => {
+            $('#addeventBtn').trigger('click');
+        }, // function
         action_nav: false // function
     };
 
     $("#demo").zabuto_calendar(settings);
+;
+
 }
