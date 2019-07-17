@@ -2,5 +2,7 @@
     <div id="demo"></div>
 </span>
 
-{% block modalAddEvent %}{% endblock %}
+<textarea id="allEvents" hidden="hidden">{{ allEvents }}</textarea>
+
 {% include 'components/modal-add-event.html.twig' %}
+{% block modalAddEvent %}{% endblock %}

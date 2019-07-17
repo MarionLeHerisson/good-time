@@ -41,6 +41,7 @@ class barController extends AbstractController
         $allPictures   = $this->getAllPictures();
         $products      = $this->getProducts();
         $allCategories = $this->getAllCategories();
+        $events        = $this->getAllEvents($bar->getId());
 
         return $this->render('bar.html.twig', [
             'bar'                  => $bar,
@@ -51,6 +52,7 @@ class barController extends AbstractController
             'allPictures'          => $allPictures,
             'products'             => $products,
             'allCategories'        => $allCategories,
+            'allEvents'        => $events,
         ]);
     }
 
@@ -359,5 +361,14 @@ class barController extends AbstractController
             'Vins rosés',
             'Vins rouges',
         ];
+    }
+
+    public function getAllEvents($barId) {
+
+        return '[{"date":"2019-07-21","time":"21:00:00","badge":false,"title":"Gorillaz","description":"Concert privé"},
+            {"date":"2019-07-23","time":"19:00:00","badge":false,"title":"Bonobo","description":"Accoustic session"},
+            {"date":"2019-07-30","time":"17:00:00","badge":false,"title":"Foals","description":"Entrée libre avant minuit"},
+            {"date":"2019-08-15","time":"20:00:00","badge":false,"title":"alt-J","description":""}
+        ]';
     }
 }

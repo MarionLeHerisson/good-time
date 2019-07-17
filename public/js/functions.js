@@ -262,9 +262,10 @@ function handleReservations() {
 }
 
 function handleEvents() {
-    let now = new Date();
-    let year = now.getFullYear();
+    let now   = new Date();
+    let year  = now.getFullYear();
     let month = now.getMonth() + 1;
+    let data  = JSON.parse($('#allEvents').text());
     let settings = {
         language: 'fr',
         year: year,
@@ -279,14 +280,12 @@ function handleEvents() {
             prev: '<',
             next: '>'
         }, // object: prev: string, next: string
-        data: null,
-//            [
-//            {"date":"2019-07-01","badge":false,"title":"Example 1"},
-//            {"date":"2019-07-02","badge":true,"title":"Example 2"}
-//        ],
+        data: data,
         ajax: false, // object: url: string, modal: boolean,
         legend: false, // object array, [{type: string, label: string, classname: string}]
         action: (e) => {
+            console.log(e);
+            console.log($('#'+e.id).data('date'));
             $('#addeventBtn').trigger('click');
         }, // function
         action_nav: false // function
