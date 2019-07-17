@@ -14,4 +14,4 @@ In dev mode, also launch Wamp/Lamp to have a local database. A creation file and
 
 Don't forget ton run `composer install` in the project's root folder.
 
-![cheers !](https://github.com/MarionLeHerisson/good-time)
+![cheers](https://media.giphy.com/media/gpP18dtmlplle/giphy.gif)
